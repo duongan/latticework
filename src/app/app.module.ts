@@ -15,6 +15,8 @@ import { HomeComponent } from './home/home.component';
 import { FooterComponent } from './footer/footer.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { UserSearchComponent } from './user-search/user-search.component';
+import { UserInfoBlockComponent } from './user-info-block/user-info-block.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +25,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     LoginComponent,
     HomeComponent,
     FooterComponent,
-    SidebarComponent
+    SidebarComponent,
+    UserSearchComponent,
+    UserInfoBlockComponent
   ],
   imports: [
     BrowserModule,
