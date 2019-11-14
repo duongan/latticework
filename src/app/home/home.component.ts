@@ -6,9 +6,17 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
+  constructor(private auth: AuthenticationService, private router: Router) {}
 
-  constructor() { }
+  ngOnInit() {
+    this.auth.currentUser.subscribe(user => {
+      if (!user) {
+        this.router.navigate(['/login']);
+      }
+    });
+  }
 
-  ngOnInit() {}
-
+  logout() {
+    this.auth.logout();
+  }
 }
