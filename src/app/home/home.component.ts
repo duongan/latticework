@@ -8,11 +8,7 @@ import { AuthenticationService } from '../services/authentication.service';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
-
-  constructor(
-    private auth: AuthenticationService,
-    private router: Router
-    ) { }
+  constructor(private auth: AuthenticationService, private router: Router) {}
 
   ngOnInit() {
     this.auth.currentUser.subscribe(user => {
@@ -25,5 +21,4 @@ export class HomeComponent implements OnInit {
   logout() {
     this.auth.logout();
   }
-
 }
