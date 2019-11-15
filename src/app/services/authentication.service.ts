@@ -34,4 +34,8 @@ export class AuthenticationService {
     this.currentUserSubject.next(null);
   }
 
+  getUsers(): Observable<any[]> {
+    return this.http.get<any[]>('api/users').pipe();
+  }
+
 }
