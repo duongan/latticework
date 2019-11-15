@@ -2,7 +2,7 @@
     <mat-expansion-panel class="no-box-shadow" hideToggle
       (opened)="firstPanelOpenState = true"
       (closed)="firstPanelOpenState = false">
-        <mat-expansion-panel-header style="background-color: #4D648D;">
+        <mat-expansion-panel-header class="expansion-header">
             <mat-panel-title>User History</mat-panel-title>
             <mat-icon *ngIf="!firstPanelOpenState">add</mat-icon>
             <mat-icon *ngIf="firstPanelOpenState">remove</mat-icon>
@@ -14,7 +14,7 @@
     <mat-expansion-panel class="no-box-shadow" hideToggle
       (opened)="secondPanelOpenState = true"
       (closed)="secondPanelOpenState = false">
-        <mat-expansion-panel-header style="background-color: #4D648D;">
+        <mat-expansion-panel-header class="expansion-header">
             <mat-panel-title>Amber for Munuswamy</mat-panel-title>
             <mat-icon *ngIf="!secondPanelOpenState">add</mat-icon>
             <mat-icon *ngIf="secondPanelOpenState">remove</mat-icon>
@@ -26,7 +26,7 @@
     <mat-expansion-panel class="no-box-shadow" hideToggle
       (opened)="thirdPanelOpenState = true"
       (closed)="thirdPanelOpenState = false">
-        <mat-expansion-panel-header style="background-color: #4D648D;">
+        <mat-expansion-panel-header class="expansion-header">
             <mat-panel-title>Amber Log</mat-panel-title>
             <mat-icon *ngIf="!thirdPanelOpenState">add</mat-icon>
             <mat-icon *ngIf="thirdPanelOpenState">remove</mat-icon>
