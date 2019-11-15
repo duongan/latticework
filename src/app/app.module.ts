@@ -17,6 +17,7 @@ import { SidebarComponent } from './sidebar/sidebar.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { UserSearchComponent } from './user-search/user-search.component';
 import { UserInfoBlockComponent } from './user-info-block/user-info-block.component';
+import { RequestLogButtonComponent } from './request-log-button/request-log-button.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { UserInfoBlockComponent } from './user-info-block/user-info-block.compon
     FooterComponent,
     SidebarComponent,
     UserSearchComponent,
-    UserInfoBlockComponent
+    UserInfoBlockComponent,
+    RequestLogButtonComponent
   ],
   imports: [
     BrowserModule,
