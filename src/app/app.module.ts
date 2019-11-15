@@ -21,6 +21,8 @@ import { UserHistoryComponent } from './user-history/user-history.component';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatIconModule } from '@angular/material/icon';
 import { DataTablesModule } from 'angular-datatables';
+import { UserSearchComponent } from './user-search/user-search.component';
+import { UserInfoBlockComponent } from './user-info-block/user-info-block.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +33,9 @@ import { DataTablesModule } from 'angular-datatables';
     FooterComponent,
     SidebarComponent,
     MainSectionComponent,
-    UserHistoryComponent
+    UserHistoryComponent,
+    UserSearchComponent,
+    UserInfoBlockComponent
   ],
   imports: [
     BrowserModule,

@@ -1,42 +1,7 @@
 <app-navbar></app-navbar>
 
 <div class="container-fluid">
-    <div class="row">
-        <div class="col-md-12" style="background-color: #F7F7F7;">
-            <div class="row user-info-container">
-                <div class="col-md-2"></div>
-                <div class="col-md-3 form-group">
-                    <label for="searchUserAccount" class="user-info-label">Search User Account</label>
-                    <div class="input-group">
-                        <input type="text" class="form-control no-outline"
-                            style="border: none; border-radius: 0; border-bottom: 1px solid #000000; background-color: #F7F7F7;"
-                        />
-                        <div class="input-group-append">
-                            <span class="input-group-text" style="border:none; border-bottom: 1px solid #000000; border-radius: 0; background-color: #F7F7F7;">
-                                <i class="fa fa-search"></i>
-                            </span>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-2 form-group">
-                    <label for="name" class="user-info-label">Name</label>
-                    <input type="text" class="form-control-plaintext user-info-text" value="test@gmail.com">
-                </div>
-                <div class="col-md-1 form-group">
-                    <label for="language" class="user-info-label">Language</label>
-                    <input type="text" class="form-control-plaintext user-info-text" value="English">
-                </div>
-                <div class="col-md-1 form-group">
-                    <label for="status" class="user-info-label">Status</label>
-                    <input type="text" class="form-control-plaintext user-info-text" value="Active">
-                </div>
-                <div class="col-md-3 form-group">
-                    <label for="registerTime" class="user-info-label">Register Time</label>
-                    <input type="text" class="form-control-plaintext user-info-text" value="11 Apr 2019 @ 1:39:54 Pm (GMT -07:00)">
-                </div>
-            </div>
-        </div>
-    </div>
+    <app-user-search></app-user-search>
     <div class="row">
         <div class="col-2 p-0">
             <app-sidebar></app-sidebar>

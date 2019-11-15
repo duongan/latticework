@@ -1,0 +1,31 @@
+<div class="row user-info-container my-0 py-2">
+  <div class="col-md-2">&nbsp;</div>
+  <div class="col-md-3 pl-0 form-group">
+    <label for="searchUserInput" class="user-info-label">Search User Account</label>
+    <div class="input-group">
+      <input id="searchUserInput" type="text" class="form-control form-control-sm no-outline user-info-input-search p-0"
+        [(ngModel)]="searchUserInput" [ngbTypeahead]="search" />
+      <div class="input-group-append">
+        <button class="btn btn-sm btn-link text-reset user-info-input-search" type="submit">
+          <i class="fa fa-search"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-7">
+    <div class="row">
+      <div class="col-3">
+        <app-user-info-block label="Name" value="test@gmail.com"></app-user-info-block>
+      </div>
+      <div class="col-2">
+        <app-user-info-block label="Language" value="English"></app-user-info-block>
+      </div>
+      <div class="col-2">
+        <app-user-info-block label="Status" value="Active"></app-user-info-block>
+      </div>
+      <div class="col">
+        <app-user-info-block label="Register Time" value="11 Apr 2019 @ 1:39:54 Pm (GMT -07:00)"></app-user-info-block>
+      </div>
+    </div>
+  </div>
+</div>
