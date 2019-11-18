@@ -1,27 +1,37 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <a class="navbar-brand text-hide" routerLink="/dashboard">
-      <img src="assets/old-latticework-logo.png" alt="Avatar">
-      LatticeWork, Inc
-    </a>
-    <button class="navbar-toggler" (click)="isMenuCollapsed = !isMenuCollapsed">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div [ngbCollapse]="isMenuCollapsed" class="collapse navbar-collapse">
-      <ul class="navbar-nav ml-auto">
-        <!-- Dropdown -->
-        <li class="nav-item" ngbDropdown placement="bottom-right" display="dynamic">
-          <div class="d-flex flex-row">
-            <img class="rounded-circle" src="assets/idcard.png" alt="Avatar" height="44">
-            <a class="nav-link d-inline-block" 
-              id="navbarDropdown" 
-              ngbDropdownToggle>
-              Dropdown link
-            </a>
-          </div>
-          <div ngbDropdownMenu aria-labelledby="navbarDropdown">
-            <a ngbDropdownItem href="#" (click)="logout()">Logout</a>
-          </div>
-        </li>
-      </ul>
+<nav class="navbar navbar-expand-lg navbar-dark nav-bg">
+  <a class="navbar-brand text-hide nav-brand" routerLink="/dashboard">
+    <img src="assets/old-latticework-logo.png" alt="Avatar">
+    LatticeWork, Inc
+  </a>
+  <button class="navbar-toggler" (click)="isMenuCollapsed = !isMenuCollapsed">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div [ngbCollapse]="isMenuCollapsed" class="collapse navbar-collapse">
+    <div class="form-inline">
+      <label for="searchUserInput" class="sr-only">Search User Account</label>
+      <div class="input-group">
+        <input id="searchUserInput" type="text" class="form-control form-control-sm no-outline nav-input-search p-0"
+          placeholder="Search User Account" [(ngModel)]="searchUserInput" [ngbTypeahead]="search" />
+        <div class="input-group-append">
+          <button class="btn btn-sm btn-link text-reset nav-input-search" type="submit">
+            <i class="fa fa-search"></i>
+          </button>
+        </div>
+      </div>
     </div>
-  </nav>
+    <ul class="navbar-nav ml-auto">
+      <!-- Dropdown -->
+      <li class="nav-item" ngbDropdown placement="bottom-right" display="dynamic">
+        <div class="d-flex flex-row">
+          <img class="rounded-circle" src="assets/idcard.png" alt="Avatar" height="44">
+          <a class="nav-link d-inline-block" id="navbarDropdown" ngbDropdownToggle>
+            Dropdown link
+          </a>
+        </div>
+        <div ngbDropdownMenu aria-labelledby="navbarDropdown">
+          <a ngbDropdownItem href="#" (click)="logout()">Logout</a>
+        </div>
+      </li>
+    </ul>
+  </div>
+</nav>

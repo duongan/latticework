@@ -1,0 +1,15 @@
+@import '../../variables';
+.nav {
+  &-brand {
+    padding: 0 5rem;
+  }
+  &-bg {
+    background: $dark-color;
+  }
+  &-input-search {
+    border: none;
+    border-radius: 0;
+    border-bottom: 1px solid #ffffff;
+    background-color: $dark-color;
+  }
+}
