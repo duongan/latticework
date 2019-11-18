@@ -1,46 +1,68 @@
 .login-wrapper {
-    display: flex;
+    margin: 0;
     height: 100%;
 }
 
-.login-wrapper .left {
-    flex: 1 100%;
-    background: #cccccc;
+.left-side {
+    height: 100%;
+    background: #D0E1F9;
     text-align: center;
-    padding-top: 50px;
+    padding-top: 80px;
+
+    img {
+        height: 65%;
+    }
+
+    .slogan {
+        margin-bottom: 0;
+        font-size: 20px;
+        font-weight: bold;
+    }
+
+    .sub-slogan {
+        font-size: 15px;
+        font-weight: 500;
+        padding: 0 70px 0;
+    }
 }
 
-.left > h6 {
-    margin-top: 30px;
-    padding: 0 70px 0;
-}
-
-.left > h4 {
-    margin-bottom: 30px;
-    padding: 0 100px 0;
-}
-
-.login-wrapper .right {
-    flex: 1 100%;
+.right-side {
     padding-top: 120px;
-}
 
-.right div.row {
-    margin: 0;
-}
+    div.row {
+        margin: 0;
+    }
 
-.right > h3, h6 {
-    text-align: center;
-}
+    label {
+        color: #9B9B9B;
+    }
 
-.right button {
-    margin-top: 20px;
-    border-radius: 0;
-    border-color: #000000;
-}
+    button {
+        margin-top: 20px;
+        border-radius: 5px;
+        background-color: #1E1F26;
+        color: #ffffff;
+        width: 100px;
+        height: 30px;
+        line-height: 16px;
+    }
 
-.right input {
-    border: none;
-    border-radius: 0;
-    border-bottom: 1px solid #000000;
+    input {
+        border: none;
+        border-radius: 0;
+        border-bottom: 1px solid #1E1F26;
+        color: #1E1F26;
+    }
+
+    .title {
+        text-align: center;
+        font-size: 16px;
+        font-weight: bold;
+        margin-bottom: 5px;
+    }
+    
+    .sub-title {
+        text-align: center;
+        margin-bottom: 2rem;
+    }
 }
