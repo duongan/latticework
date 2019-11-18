@@ -15,6 +15,12 @@ import { HomeComponent } from './home/home.component';
 import { FooterComponent } from './footer/footer.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MainSectionComponent } from './main-section/main-section.component';
+import { UserHistoryComponent } from './user-history/user-history.component';
+
+import { MatExpansionModule } from '@angular/material/expansion';
+import { MatIconModule } from '@angular/material/icon';
+import { DataTablesModule } from 'angular-datatables';
 import { UserSearchComponent } from './user-search/user-search.component';
 import { UserInfoBlockComponent } from './user-info-block/user-info-block.component';
 import { RequestLogButtonComponent } from './request-log-button/request-log-button.component';
@@ -27,6 +33,8 @@ import { RequestLogButtonComponent } from './request-log-button/request-log-butt
     HomeComponent,
     FooterComponent,
     SidebarComponent,
+    MainSectionComponent,
+    UserHistoryComponent,
     UserSearchComponent,
     UserInfoBlockComponent,
     RequestLogButtonComponent
@@ -38,6 +46,9 @@ import { RequestLogButtonComponent } from './request-log-button/request-log-butt
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
+    MatExpansionModule,
+    MatIconModule,
+    DataTablesModule,
 
     // The HttpClientInMemoryWebApiModule module intercepts HTTP requests
     // and returns simulated server responses.
