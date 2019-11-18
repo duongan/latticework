@@ -23,6 +23,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { DataTablesModule } from 'angular-datatables';
 import { UserSearchComponent } from './user-search/user-search.component';
 import { UserInfoBlockComponent } from './user-info-block/user-info-block.component';
+import { RequestLogButtonComponent } from './request-log-button/request-log-button.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,8 @@ import { UserInfoBlockComponent } from './user-info-block/user-info-block.compon
     MainSectionComponent,
     UserHistoryComponent,
     UserSearchComponent,
-    UserInfoBlockComponent
+    UserInfoBlockComponent,
+    RequestLogButtonComponent
   ],
   imports: [
     BrowserModule,
