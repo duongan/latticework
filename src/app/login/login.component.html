@@ -1,22 +1,22 @@
-<div class="login-wrapper">
-  <div class="left">
-    <h4>A smarter way to connect your life</h4>
-    <img src="https://i.ibb.co/tPxb1m2/amber-logo.png" alt="logo">
-    <h6>
+<div class="row login-wrapper">
+  <div class="col-md-6 left-side">
+    <p class="slogan">A smarter way to connect your life.</p>
+    <img src="assets/amber-logo.png" alt="logo">
+    <p class="sub-slogan">
       Amber puts privacy and control back into your hands.
       A lifetime of photos, videos and digital files organized locally,
       accessible from anywhere and always protected.
-    </h6>
+    </p>
   </div>
-  <div class="right">
-    <h3>Amber Support Portal</h3>
-    <h6 style="margin-bottom: 30px;">Hello! Sign in with your cloud account</h6>
+  <div class="col-md-6 right-side">
+    <p class="title">Amber Support Portal</p>
+    <p class="sub-title">Hello! Sign in with your cloud account</p>
     <form [formGroup]="loginForm" (ngSubmit)="signIn()">
       <div class="row">
         <div class="col-md-3"></div>
         <div class="form-group col-md-6">
-          <label for="email">Email</label>
-          <input type="text" formControlName="email" class="form-control no-outline" placeholder="Enter email" [ngClass]="{ 'is-invalid': submitted && f.email.errors }">
+          <label for="email">Account</label>
+          <input type="text" formControlName="email" class="form-control no-outline" placeholder="Email" [ngClass]="{ 'is-invalid': submitted && f.email.errors }">
           <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
               <div *ngIf="f.email.errors.required">Email is required</div>
               <div *ngIf="f.email.errors.email">Invalid email</div>
@@ -28,7 +28,7 @@
         <div class="col-md-3"></div>
         <div class="form-group col-md-6">
           <label for="password">Password</label>
-          <input type="password" formControlName="password" class="form-control no-outline" placeholder="Enter password" [ngClass]="{ 'is-invalid': submitted && f.password.errors }">
+          <input type="password" formControlName="password" class="form-control no-outline" placeholder="Password" [ngClass]="{ 'is-invalid': submitted && f.password.errors }">
           <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
               <div *ngIf="f.password.errors.required">Password is required</div>
           </div>
@@ -38,7 +38,7 @@
       <div class="row">
         <div class="col-md-5"></div>
         <div class="col-md-2">
-            <button class="btn btn-outline-secondary">Sign in</button>
+            <button class="btn btn-outline-secondary">SIGN IN</button>
         </div>
         <div class="col-md-5"></div>
       </div>
