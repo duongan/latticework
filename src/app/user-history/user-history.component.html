@@ -1,0 +1,26 @@
+<table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="row-border hover">
+  <thead>
+    <tr>
+      <th>Last Service Date</th>
+      <th>Customer Name</th>
+      <th>Customer Email ID</th>
+      <th>Language</th>
+      <th>Status</th>
+      <th>Register Date & Time</th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let item of dataSource">
+      <td>{{ item.lastServiceDate }}</td>
+      <td>{{ item.name }}</td>
+      <td>{{ item.email }}</td>
+      <td>{{ item.language }}</td>
+      <td>{{ item.status }}</td>
+      <td>{{ item.registeredTime }}</td>
+      <td></td>
+      <td></td>
+    </tr>
+  </tbody>
+</table>
