@@ -1,0 +1,32 @@
+@mixin background-icon($url, $width, $height) {
+  background: url($url) no-repeat;
+  width: $width;
+  height: $height;
+  display: inline-block;
+}
+.ltw-detail {
+  &-cloud-icon {
+    @include background-icon('../../assets/cloud-upload.png', 27px, 23px);
+  }
+
+  &-disk-icon {
+    @include background-icon('../../assets/cloud-harddisk-1.png', 21px, 27px);
+  }
+
+  &-label {
+    color: #aaaaaa;
+    font-size: 1em;
+  }
+
+  &-table {
+    margin: 0 auto;
+  }
+
+  &-table tr td {
+    padding: 0.75em;
+  }
+
+  &-activity-card {
+    max-height: 325px;
+  }
+}
