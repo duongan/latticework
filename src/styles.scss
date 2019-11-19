@@ -37,3 +37,9 @@ div.popover-body {
 ngb-popover-window.popover {
   max-width: 315px;
 }
+
+// overwrite mat expension css
+.mat-expansion-panel-body {
+  padding: 0 !important;
+  margin-top: 10px;
+}

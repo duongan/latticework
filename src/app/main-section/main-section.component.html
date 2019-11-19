@@ -1,11 +1,11 @@
 <mat-accordion multi="true">
-    <mat-expansion-panel class="no-box-shadow" hideToggle
+    <mat-expansion-panel class="no-box-shadow" style="border-top: none;" hideToggle
       (opened)="firstPanelOpenState = true"
       (closed)="firstPanelOpenState = false">
         <mat-expansion-panel-header class="expansion-header">
-            <mat-panel-title>User History</mat-panel-title>
-            <mat-icon *ngIf="!firstPanelOpenState">add</mat-icon>
-            <mat-icon *ngIf="firstPanelOpenState">remove</mat-icon>
+            <mat-panel-title class="text-header">User History</mat-panel-title>
+            <mat-icon *ngIf="!firstPanelOpenState" class="text-header">add</mat-icon>
+            <mat-icon *ngIf="firstPanelOpenState" class="text-header">remove</mat-icon>
         </mat-expansion-panel-header>
         
         <app-user-history></app-user-history>
@@ -15,9 +15,9 @@
       (opened)="secondPanelOpenState = true"
       (closed)="secondPanelOpenState = false">
         <mat-expansion-panel-header class="expansion-header">
-            <mat-panel-title>Amber for Munuswamy</mat-panel-title>
-            <mat-icon *ngIf="!secondPanelOpenState">add</mat-icon>
-            <mat-icon *ngIf="secondPanelOpenState">remove</mat-icon>
+            <mat-panel-title class="text-header">Amber for Munuswamy</mat-panel-title>
+            <mat-icon *ngIf="!secondPanelOpenState" class="text-header">add</mat-icon>
+            <mat-icon *ngIf="secondPanelOpenState" class="text-header">remove</mat-icon>
         </mat-expansion-panel-header>
         
         <p>This is the primary content of the panel.</p>
@@ -27,12 +27,12 @@
       (opened)="thirdPanelOpenState = true"
       (closed)="thirdPanelOpenState = false">
         <mat-expansion-panel-header class="expansion-header">
-            <mat-panel-title>Amber Log</mat-panel-title>
-            <mat-icon *ngIf="!thirdPanelOpenState">add</mat-icon>
-            <mat-icon *ngIf="thirdPanelOpenState">remove</mat-icon>
+            <mat-panel-title class="text-header">Amber Log</mat-panel-title>
+            <mat-icon *ngIf="!thirdPanelOpenState" class="text-header">add</mat-icon>
+            <mat-icon *ngIf="thirdPanelOpenState" class="text-header">remove</mat-icon>
         </mat-expansion-panel-header>
         
-        <p>This is the primary content of the panel.</p>
+        <app-log></app-log>
         
     </mat-expansion-panel>
 </mat-accordion>

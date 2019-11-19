@@ -24,6 +24,7 @@ import { DataTablesModule } from 'angular-datatables';
 import { UserSearchComponent } from './user-search/user-search.component';
 import { UserInfoBlockComponent } from './user-info-block/user-info-block.component';
 import { RequestLogButtonComponent } from './request-log-button/request-log-button.component';
+import { LogComponent } from './log/log.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +38,8 @@ import { RequestLogButtonComponent } from './request-log-button/request-log-butt
     UserHistoryComponent,
     UserSearchComponent,
     UserInfoBlockComponent,
-    RequestLogButtonComponent
+    RequestLogButtonComponent,
+    LogComponent
   ],
   imports: [
     BrowserModule,

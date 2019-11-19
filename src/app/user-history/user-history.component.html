@@ -1,4 +1,4 @@
-<table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="row-border hover">
+<table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="table-striped">
   <thead>
     <tr>
       <th>Last Service Date</th>
@@ -19,8 +19,12 @@
       <td>{{ item.language }}</td>
       <td>{{ item.status }}</td>
       <td>{{ item.registeredTime }}</td>
-      <td></td>
-      <td></td>
+      <td style="width: 5%;">
+        <button type="button"><img src="assets/tab.png" /></button>
+      </td>
+      <td style="width: 5%;">
+        <button type="button"><img src="assets/group.png" /></button>
+      </td>
     </tr>
   </tbody>
 </table>
