@@ -35,8 +35,6 @@ import { DetailPageComponent } from './detail-page/detail-page.component';
     SidebarComponent,
     MainSectionComponent,
     UserHistoryComponent,
-    UserSearchComponent,
-    UserInfoBlockComponent,
     LogComponent,
     RequestLogButtonComponent,
     DetailPageComponent
