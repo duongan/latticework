@@ -21,9 +21,8 @@ import { UserHistoryComponent } from './user-history/user-history.component';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatIconModule } from '@angular/material/icon';
 import { DataTablesModule } from 'angular-datatables';
-import { UserSearchComponent } from './user-search/user-search.component';
-import { UserInfoBlockComponent } from './user-info-block/user-info-block.component';
 import { RequestLogButtonComponent } from './request-log-button/request-log-button.component';
+import { DetailPageComponent } from './detail-page/detail-page.component';
 
 @NgModule({
   declarations: [
@@ -35,9 +34,8 @@ import { RequestLogButtonComponent } from './request-log-button/request-log-butt
     SidebarComponent,
     MainSectionComponent,
     UserHistoryComponent,
-    UserSearchComponent,
-    UserInfoBlockComponent,
-    RequestLogButtonComponent
+    RequestLogButtonComponent,
+    DetailPageComponent
   ],
   imports: [
     BrowserModule,
@@ -53,13 +51,13 @@ import { RequestLogButtonComponent } from './request-log-button/request-log-butt
     // The HttpClientInMemoryWebApiModule module intercepts HTTP requests
     // and returns simulated server responses.
     // Remove it when a real server is ready to receive requests.
-    HttpClientInMemoryWebApiModule.forRoot(
-      InMemoryDataService, { dataEncapsulation: false }
-    ),
+    HttpClientInMemoryWebApiModule.forRoot(InMemoryDataService, {
+      dataEncapsulation: false
+    }),
 
     BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {}
