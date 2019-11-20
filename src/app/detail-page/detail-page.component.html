@@ -1,0 +1,117 @@
+<div class="row pt-4 no-gutters">
+  <!-- 1 -->
+  <div class="col-12 col-md-3">
+    <div class="card border-0 text-center">
+      <div class="card-img-top">
+        <img src="https://i.ibb.co/tPxb1m2/amber-logo.png" alt="logo" width="149" height="183">
+      </div>
+      <div class="card-body p-0">
+        <div class="card-text mb-2">
+          <table class="border-0 ltw-detail-table text-left">
+            <tbody>
+              <tr>
+                <td><i class="ltw-detail-cloud-icon"></i></td>
+                <td class="ltw-detail-label">Cloud Usage</td>
+                <td class="p-0">:</td>
+                <td>0.3 GB/2 GB</td>
+              </tr>
+              <tr>
+                <td><i class="ltw-detail-disk-icon"></i></td>
+                <td class="ltw-detail-label">Disk Usage</td>
+                <td class="p-0">:</td>
+                <td>0.3 GB/2 GB</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <button type="button" class="btn btn-sm btn-dark round-corner mr-2">Remote Debug</button>
+
+        <app-request-log-button></app-request-log-button>
+
+      </div>
+    </div>
+  </div>
+
+  <div class="col-12 col-md-6">
+    <div class="d-flex justify-content-between justify-content-lg-around">
+      <table class="border-0">
+        <tbody>
+          <tr *ngFor="let detail of leftDetails">
+            <td class="ltw-detail-label p-3 align-middle">{{detail.label}}</td>
+            <td class="p-0 py-3 align-middle">:</td>
+            <td class="p-3 align-middle">{{detail.value}}</td>
+          </tr>
+        </tbody>
+      </table>
+      <table class="border-0">
+        <tbody>
+          <tr *ngFor="let detail of rightDetails">
+            <td class="ltw-detail-label p-3 align-middle">{{detail.label}}</td>
+            <td class="p-0 py-3 align-middle">:</td>
+            <td class="p-3 align-middle d-flex align-items-center">
+              {{detail.value}}
+              <button type="button" class="btn btn-dark btn-sm round-corner ml-3"
+                *ngIf="detail.label === 'GUID'">Migrate</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="col-12 col-md-3">
+    <div class="card ltw-detail-activity-card">
+      <div class="card-header bg-transparent text-center border-bottom border-dark">
+        Activity Events
+      </div>
+      <div class="table-responsive">
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th scope="col">Date</th>
+              <th scope="col">Event Type</th>
+              <th scope="col">Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>28 Oct 2019</td>
+              <td>OS Upgrade</td>
+              <td>OS Upgrade to 0.11.1</td>
+            </tr>
+            <tr>
+              <td>28 Oct 2019</td>
+              <td>OS Upgrade</td>
+              <td>OS Upgrade to 0.11.1</td>
+            </tr>
+            <tr>
+              <td>28 Oct 2019</td>
+              <td>OS Upgrade</td>
+              <td>OS Upgrade to 0.11.1</td>
+            </tr>
+            <tr>
+              <td>28 Oct 2019</td>
+              <td>OS Upgrade</td>
+              <td>OS Upgrade to 0.11.1</td>
+            </tr>
+            <tr>
+              <td>28 Oct 2019</td>
+              <td>OS Upgrade</td>
+              <td>OS Upgrade to 0.11.1</td>
+            </tr>
+            <tr>
+              <td>28 Oct 2019</td>
+              <td>OS Upgrade</td>
+              <td>OS Upgrade to 0.11.1</td>
+            </tr>
+            <tr>
+              <td>28 Oct 2019</td>
+              <td>OS Upgrade</td>
+              <td>OS Upgrade to 0.11.1</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
