@@ -38,4 +38,8 @@ export class AuthenticationService {
     return this.http.get<any[]>('api/users').pipe();
   }
 
+  getLogs(): Observable<any[]> {
+    return this.http.get<any[]>('api/logs').pipe();
+  }
+
 }

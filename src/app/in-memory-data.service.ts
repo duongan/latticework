@@ -87,7 +87,27 @@ export class InMemoryDataService implements InMemoryDbService {
         registeredTime: Date.now()
       }
     ];
-    return {user, users};
+    const logs = [
+      {
+        id: 12345,
+        name: 'user1@gmail.com',
+        createDate: Date.now(),
+        timeUpload: Date.now()
+      },
+      {
+        id: 21345,
+        name: 'user2@gmail.com',
+        createDate: Date.now(),
+        timeUpload: Date.now()
+      },
+      {
+        id: 31245,
+        name: 'user3@gmail.com',
+        createDate: Date.now(),
+        timeUpload: Date.now()
+      }
+    ];
+    return {user, users, logs};
   }
 
 }
