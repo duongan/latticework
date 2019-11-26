@@ -21,10 +21,6 @@ export class LogComponent implements OnInit, OnDestroy {
         { orderable: false, targets: 2 }
       ]
     };
-    this.auth.getLogs().subscribe(logs => {
-      this.dataSource = logs;
-      this.dtTrigger.next();
-    });
   }
 
   ngOnDestroy() {
