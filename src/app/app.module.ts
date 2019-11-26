@@ -18,6 +18,7 @@ import { UserHistoryComponent } from './user-history/user-history.component';
 
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatIconModule } from '@angular/material/icon';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { DataTablesModule } from 'angular-datatables';
 import { RequestLogButtonComponent } from './request-log-button/request-log-button.component';
 import { LogComponent } from './log/log.component';
@@ -46,6 +47,7 @@ import { DetailPageComponent } from './detail-page/detail-page.component';
     HttpClientModule,
     MatExpansionModule,
     MatIconModule,
+    MatProgressSpinnerModule,
     DataTablesModule,
 
     BrowserAnimationsModule
