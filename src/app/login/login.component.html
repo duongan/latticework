@@ -15,11 +15,10 @@
       <div class="row">
         <div class="col-md-3"></div>
         <div class="form-group col-md-6">
-          <label for="email">Account</label>
-          <input type="text" formControlName="email" class="form-control no-outline" placeholder="Email" [ngClass]="{ 'is-invalid': submitted && f.email.errors }">
-          <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
-              <div *ngIf="f.email.errors.required">Email is required</div>
-              <div *ngIf="f.email.errors.email">Invalid email</div>
+          <label for="account">Account</label>
+          <input type="text" formControlName="account" class="form-control no-outline" placeholder="Account" [ngClass]="{ 'is-invalid': submitted && f.account.errors }">
+          <div *ngIf="submitted && f.account.errors" class="invalid-feedback">
+              <div *ngIf="f.account.errors.required">Account is required</div>
           </div>
         </div>
         <div class="col-md-3"></div>

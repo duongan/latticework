@@ -28,10 +28,6 @@ export class UserHistoryComponent implements OnInit, OnDestroy {
       searching: false,
       info: false
     };
-    this.auth.getUsers().subscribe(users => {
-      this.dataSource = users;
-      this.dtTrigger.next();
-    });
   }
 
   ngOnDestroy() {
