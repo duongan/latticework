@@ -12,7 +12,7 @@ export class LoginComponent implements OnInit {
 
   loginForm: FormGroup;
   submitted = false;
-  users: any[];
+  loading = false;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -40,9 +40,13 @@ export class LoginComponent implements OnInit {
     if (this.loginForm.invalid) {
       return;
     }
+    this.loading = true;
     const { account, password } = this.loginForm.controls;
     this.auth.login(account.value, password.value).subscribe(token => {
-      this.router.navigate(['/dashboard']);
+      this.loading = false;
+      if (token) {
+        this.router.navigate(['/dashboard']);
+      }
     });
   }
 

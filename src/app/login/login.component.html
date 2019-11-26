@@ -14,9 +14,16 @@
     <form [formGroup]="loginForm" (ngSubmit)="signIn()">
       <div class="row">
         <div class="col-md-3"></div>
+        <div class="alert alert-danger col-md-6" role="alert" *ngIf="auth.authErrors.login">
+            {{auth.authErrors.login}}
+        </div>
+        <div class="col-md-3"></div>
+      </div>
+      <div class="row">
+        <div class="col-md-3"></div>
         <div class="form-group col-md-6">
           <label for="account">Account</label>
-          <input type="text" formControlName="account" class="form-control no-outline" placeholder="Account" [ngClass]="{ 'is-invalid': submitted && f.account.errors }">
+          <input type="text" formControlName="account" class="form-control no-outline" placeholder="Enter your account" [ngClass]="{ 'is-invalid': submitted && f.account.errors }">
           <div *ngIf="submitted && f.account.errors" class="invalid-feedback">
               <div *ngIf="f.account.errors.required">Account is required</div>
           </div>
@@ -27,12 +34,20 @@
         <div class="col-md-3"></div>
         <div class="form-group col-md-6">
           <label for="password">Password</label>
-          <input type="password" formControlName="password" class="form-control no-outline" placeholder="Password" [ngClass]="{ 'is-invalid': submitted && f.password.errors }">
+          <input type="password" formControlName="password" class="form-control no-outline" placeholder="Enter your password" [ngClass]="{ 'is-invalid': submitted && f.password.errors }">
           <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
               <div *ngIf="f.password.errors.required">Password is required</div>
           </div>
         </div>
         <div class="col-md-3"></div>
+      </div>
+      <div class="row" style="height: 20px;" *ngIf="loading">
+        <mat-progress-spinner
+          class="login-spinner"
+          mode="indeterminate"
+          value="50"
+          diameter="20">
+        </mat-progress-spinner>
       </div>
       <div class="row">
         <div class="col-md-5"></div>
