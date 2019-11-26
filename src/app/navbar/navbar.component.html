@@ -1,4 +1,4 @@
-<nav class="row navbar navbar-expand-lg nav-bg navbar-dark">
+<nav class="navbar navbar-expand-lg nav-bg navbar-dark">
   <a class="navbar-brand text-hide nav-brand col-2" routerLink="/dashboard">
     <img src="assets/Lattice logo.png" alt="Avatar">
     LatticeWork, Inc
@@ -11,9 +11,15 @@
       <label for="searchUserInput" class="sr-only">Search User Account</label>
       <div class="input-group w-100">
         <input id="searchUserInput" type="text" class="form-control no-outline nav-input-search p-0 text-white"
-          placeholder="Search User Account" [(ngModel)]="searchUserInput" [ngbTypeahead]="search" />
+          placeholder="Search User Account" [(ngModel)]="searchUserInput" (ngModelChange)="searchUser()"
+          [ngbTypeahead]="search" [editable]='false' />
         <div class="input-group-append">
-          <button class="btn btn-sm btn-link text-reset nav-input-search" type="submit">
+          <div *ngIf="loading">
+            <mat-progress-spinner color="warn" mode="indeterminate" diameter="30">
+            </mat-progress-spinner>
+          </div>
+          <button class="btn btn-sm btn-link text-reset nav-input-search" type="button" (click)="searchUser()"
+            *ngIf="!loading">
             <i class="fa fa-search text-white"></i>
           </button>
         </div>
