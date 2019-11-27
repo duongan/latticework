@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { BehaviorSubject, Observable, of } from 'rxjs';
 import { map, tap, catchError } from 'rxjs/operators';
+import { UrlService } from './url.service';
 
 const httpOptions = {
   headers: new HttpHeaders({
@@ -21,7 +22,7 @@ export class AuthenticationService {
     login: ''
   };
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, private urlService: UrlService) {
     this.currentUserSubject = new BehaviorSubject<any>(localStorage.getItem('userToken'));
     this.currentUser = this.currentUserSubject.asObservable();
   }
@@ -47,7 +48,8 @@ export class AuthenticationService {
   }
 
   login(account: string, password: string): Observable<any> {
-    return this.http.post<any>('http://10.49.8.222:8888/auth/login', { account, password }, httpOptions)
+    const uri = this.urlService.get('login');
+    return this.http.post<any>(uri, { account, password }, httpOptions)
       .pipe(
         map(result => {
           this.errors.login = '';
