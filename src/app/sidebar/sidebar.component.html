@@ -1,37 +1,22 @@
 <aside class="ltw-sidebar ltw-sidebar-bg">
-  <div class="list-group list-group-flush">
-    <a class="list-group-item list-group-item-action d-flex justify-content-between align-items-center ltw-sidebar-bg-item"
-      href="#">
-      <span>
-        <img class="img-thumbnail" src="assets/Amber dashboard.png" alt="Amber" width="29" height="32">
-        Amber
-      </span>
-      <span>
-        <span class="badge badge-light badge-pill border border-dark">0</span>
-        <i class="fa fa-angle-down ml-3"></i>
-      </span>
-    </a>
-    <a class="list-group-item list-group-item-action d-flex justify-content-between align-items-center ltw-sidebar-bg-item"
-      href="#" tabindex="-1" aria-disabled="true">
-      <span>
-        <img class="img-thumbnail" src="assets/mobile.png" alt="Amber" width="29" height="32">
-        App
-      </span>
-      <span>
-        <span class="badge badge-light badge-pill border border-dark">0</span>
-        <i class="fa fa-angle-down ml-3"></i>
-      </span>
-    </a>
-    <a class="list-group-item list-group-item-action d-flex justify-content-between align-items-center ltw-sidebar-bg-item"
-      href="#">
-      <span>
-        <img class="img-thumbnail" src="assets/Amber X.png" alt="Amber" width="29" height="32">
-        Amber X
-      </span>
-      <span>
-        <span class="badge badge-light badge-pill border border-dark">0</span>
-        <i class="fa fa-angle-down ml-3"></i>
-      </span>
-    </a>
-  </div>
+  <mat-accordion>
+    <mat-expansion-panel *ngFor="let item of sidebarList" class="ltw-sidebar-bg-item rounded-0 shadow-none my-0"
+      [hideToggle]="item.hideToggle" [disabled]="item.hideToggle">
+      <mat-expansion-panel-header collapsedHeight="60px" expandedHeight="60px">
+        <mat-panel-title>
+          <mat-icon [svgIcon]="item.icon" class="mr-2"></mat-icon>
+          {{item.name}}
+        </mat-panel-title>
+        <div class="d-flex align-items-center justify-content-center mr-3">
+          <span class="badge badge-light badge-pill border border-dark">{{item.dataLength}}</span>
+        </div>
+      </mat-expansion-panel-header>
+
+      <div class="list-group list-group-flush">
+        <a class="list-group-item list-group-item-action" href="#"
+          *ngFor="let nas of item.data">{{nas.display_name}}</a>
+      </div>
+
+    </mat-expansion-panel>
+  </mat-accordion>
 </aside>
