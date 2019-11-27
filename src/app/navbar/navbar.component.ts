@@ -1,7 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthenticationService } from '../services/authentication.service';
-import { Observable } from 'rxjs';
-import { debounceTime, distinctUntilChanged, map } from 'rxjs/operators';
+import { Observable, of } from 'rxjs';
+import {
+  debounceTime,
+  distinctUntilChanged,
+  switchMap,
+  tap
+} from 'rxjs/operators';
+import { UserService } from '../services/user.service';
 
 @Component({
   selector: 'app-navbar',
@@ -12,30 +18,40 @@ export class NavbarComponent implements OnInit {
   public isMenuCollapsed = true;
   public searchUserInput: string;
   public search: any;
+  public loading = false;
 
-  constructor(private auth: AuthenticationService) {
-    const names = [
-      'anh.ha@terralogic.com',
-      'duong.an@terralogic.com',
-      'aaric.nguyen@terralogic.com'
-    ];
+  constructor(
+    private auth: AuthenticationService,
+    private userService: UserService
+  ) {}
+
+  ngOnInit() {
     this.search = (text$: Observable<string>) =>
       text$.pipe(
         debounceTime(200),
         distinctUntilChanged(),
-        map((term: string) =>
-          term.length < 2
-            ? []
-            : names
-                .filter(v => v.toLowerCase().indexOf(term.toLowerCase()) > -1)
-                .slice(0, 10)
-        )
+        tap(() => (this.loading = true)),
+        switchMap((term: string) =>
+          term ? this.userService.searchUser(term) : of(null)
+        ),
+        tap(() => (this.loading = false))
       );
   }
 
-  ngOnInit() {}
-
   logout() {
     this.auth.logout();
+  }
+
+  searchUser() {
+    const email = this.searchUserInput ? this.searchUserInput.trim() : null;
+    if (!email) {
+      return;
+    }
+
+    this.loading = true;
+    this.userService.getUserDetail(email).subscribe(res => {
+      this.loading = false;
+      console.log(res);
+    });
   }
 }
