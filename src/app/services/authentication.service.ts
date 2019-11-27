@@ -23,7 +23,7 @@ export class AuthenticationService {
   };
 
   constructor(private http: HttpClient, private urlService: UrlService) {
-    this.currentUserSubject = new BehaviorSubject<any>(localStorage.getItem('userToken'));
+    this.currentUserSubject = new BehaviorSubject<any>(localStorage.getItem('currentUser'));
     this.currentUser = this.currentUserSubject.asObservable();
   }
 
@@ -39,7 +39,7 @@ export class AuthenticationService {
     return (error: any): Observable<T> => {
       // console.log(`${operation} failed: ${error.message}`);
       console.log(error);
-      if (error.status === 500) {
+      if (error.status !== 200) {
         this.errors.login = 'Incorrect account or password';
       }
       // Let the app keep running by returning an empty result.
@@ -54,16 +54,17 @@ export class AuthenticationService {
         map(result => {
           this.errors.login = '';
           const { token } = result.data;
-          localStorage.setItem('userToken', token);
-          this.currentUserSubject.next(token);
-          return result;
+          const currentUser = JSON.stringify({ account, token });
+          localStorage.setItem('currentUser', currentUser);
+          this.currentUserSubject.next(currentUser);
+          return currentUser;
         }),
         catchError(this.handleError('login'))
       );
   }
 
   logout() {
-    localStorage.removeItem('userToken');
+    localStorage.removeItem('currentUser');
     this.currentUserSubject.next(null);
   }
 

@@ -19,6 +19,7 @@ export class NavbarComponent implements OnInit {
   public searchUserInput: string;
   public search: any;
   public loading = false;
+  public currentUser: any = null;
 
   constructor(
     private auth: AuthenticationService,
@@ -26,6 +27,7 @@ export class NavbarComponent implements OnInit {
   ) {}
 
   ngOnInit() {
+    this.currentUser = JSON.parse(this.auth.currentUserValue);
     this.search = (text$: Observable<string>) =>
       text$.pipe(
         debounceTime(200),
