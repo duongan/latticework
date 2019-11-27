@@ -9,7 +9,6 @@ import { AuthenticationService } from '../services/authentication.service';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
-
   loginForm: FormGroup;
   submitted = false;
   loading = false;
@@ -18,12 +17,12 @@ export class LoginComponent implements OnInit {
     private formBuilder: FormBuilder,
     private auth: AuthenticationService,
     private router: Router
-    ) {
-      // Redirect to Dashboard if already logged in
-      if (this.auth.currentUserValue) {
-        this.router.navigate(['/dashboard']);
-      }
+  ) {
+    // Redirect to Dashboard if already logged in
+    if (this.auth.currentUserValue) {
+      this.router.navigate(['/dashboard']);
     }
+  }
 
   ngOnInit() {
     this.loginForm = this.formBuilder.group({
@@ -33,7 +32,12 @@ export class LoginComponent implements OnInit {
   }
 
   // Convenience getter for easy access to form fields
-    get f() { return this.loginForm.controls; }
+  get f() {
+    return this.loginForm.controls;
+  }
+  get a() {
+    return this.auth;
+  }
 
   signIn() {
     this.submitted = true;
@@ -49,5 +53,4 @@ export class LoginComponent implements OnInit {
       }
     });
   }
-
 }
