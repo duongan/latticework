@@ -47,7 +47,11 @@ export class AuthenticationService {
   }
 
   login(account: string, password: string): Observable<any> {
-    return this.http
+    const token = 'eyJ0eXAiOiJKV';
+    localStorage.setItem('userToken', token);
+    this.currentUserSubject.next(token);
+    return of(token);
+    /* return this.http
       .post<any>(
         'http://10.49.8.222:8888/auth/login',
         { account, password },
@@ -62,7 +66,7 @@ export class AuthenticationService {
           return result;
         }),
         catchError(this.handleError('login'))
-      );
+      ); */
   }
 
   logout() {
