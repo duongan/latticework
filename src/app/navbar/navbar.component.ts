@@ -51,9 +51,9 @@ export class NavbarComponent implements OnInit {
     }
 
     this.loading = true;
-    this.userService.getUserDetail(email).subscribe(res => {
+    this.userService.currentUser.subscribe(res => {
       this.loading = false;
-      console.log(res);
     });
+    this.userService.getUserDetail(email);
   }
 }

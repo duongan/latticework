@@ -6,16 +6,14 @@ import { UrlService } from './url.service';
 
 const httpOptions = {
   headers: new HttpHeaders({
-    'Content-Type':  'application/json'
+    'Content-Type': 'application/json'
   })
 };
 
 @Injectable({
   providedIn: 'root'
 })
-
 export class AuthenticationService {
-
   private currentUserSubject: BehaviorSubject<any>;
   public currentUser: Observable<any>;
   private errors = {
@@ -35,7 +33,7 @@ export class AuthenticationService {
     return this.errors;
   }
 
-  private handleError<T> (operation = 'operation', result?: T) {
+  private handleError<T>(operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
       // console.log(`${operation} failed: ${error.message}`);
       console.log(error);
@@ -64,8 +62,7 @@ export class AuthenticationService {
   }
 
   logout() {
-    localStorage.removeItem('currentUser');
+    localStorage.clear();
     this.currentUserSubject.next(null);
   }
-
 }
