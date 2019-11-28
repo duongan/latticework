@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import { MatIconRegistry } from '@angular/material/icon';
 import { UserService } from '../services/user.service';
-import { Observable } from 'rxjs';
 import { SideBar } from '../types/sidebar';
 
 @Component({
@@ -35,22 +34,19 @@ export class SidebarComponent implements OnInit {
         name: 'Amber',
         icon: 'amber',
         data: [],
-        dataLength: 0,
-        hideToggle: true
+        dataLength: 0
       },
       {
         name: 'App',
         icon: 'app',
         data: [],
-        dataLength: 0,
-        hideToggle: true
+        dataLength: 0
       },
       {
         name: 'Amber X',
         icon: 'amberX',
         data: [],
-        dataLength: 0,
-        hideToggle: true
+        dataLength: 0
       }
     ];
   }
@@ -63,10 +59,8 @@ export class SidebarComponent implements OnInit {
 
       this.sidebarList[0].data = user.nas_list;
       this.sidebarList[0].dataLength = user.nas_list ? user.nas_list.length : 0;
-      this.sidebarList[0].hideToggle = this.sidebarList[0].dataLength === 0;
       this.sidebarList[1].data = user.app_list;
       this.sidebarList[1].dataLength = user.app_list ? user.app_list.length : 0;
-      this.sidebarList[1].hideToggle = this.sidebarList[1].dataLength === 0;
     });
   }
 }

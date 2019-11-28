@@ -3,5 +3,4 @@ export interface SideBar {
   icon: string;
   data: Array<any>;
   dataLength: number;
-  hideToggle: boolean;
 }

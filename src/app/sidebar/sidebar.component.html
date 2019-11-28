@@ -1,7 +1,6 @@
 <aside class="ltw-sidebar ltw-sidebar-bg">
   <mat-accordion>
-    <mat-expansion-panel *ngFor="let item of sidebarList" class="ltw-sidebar-bg-item rounded-0 shadow-none my-0"
-      [hideToggle]="item.hideToggle" [disabled]="item.hideToggle">
+    <mat-expansion-panel *ngFor="let item of sidebarList" class="ltw-sidebar-bg-item rounded-0 shadow-none my-0">
       <mat-expansion-panel-header collapsedHeight="60px" expandedHeight="60px">
         <mat-panel-title>
           <mat-icon [svgIcon]="item.icon" class="mr-2"></mat-icon>
