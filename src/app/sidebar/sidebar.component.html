@@ -14,7 +14,7 @@
 
       <div class="list-group list-group-flush">
         <a class="list-group-item list-group-item-action" href="#"
-          *ngFor="let nas of item.data">{{nas.display_name}}</a>
+          *ngFor="let nas of item.data">{{item.name === 'App' ? nas.app_display_name : nas.display_name}}</a>
       </div>
 
     </mat-expansion-panel>
