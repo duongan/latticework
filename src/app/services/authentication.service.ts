@@ -5,16 +5,14 @@ import { map, tap, catchError } from 'rxjs/operators';
 
 const httpOptions = {
   headers: new HttpHeaders({
-    'Content-Type':  'application/json'
+    'Content-Type': 'application/json'
   })
 };
 
 @Injectable({
   providedIn: 'root'
 })
-
 export class AuthenticationService {
-
   private currentUserSubject: BehaviorSubject<any>;
   public currentUser: Observable<any>;
   private errors = {
@@ -22,7 +20,9 @@ export class AuthenticationService {
   };
 
   constructor(private http: HttpClient) {
-    this.currentUserSubject = new BehaviorSubject<any>(localStorage.getItem('userToken'));
+    this.currentUserSubject = new BehaviorSubject<any>(
+      localStorage.getItem('userToken')
+    );
     this.currentUser = this.currentUserSubject.asObservable();
   }
 
@@ -34,7 +34,7 @@ export class AuthenticationService {
     return this.errors;
   }
 
-  private handleError<T> (operation = 'operation', result?: T) {
+  private handleError<T>(operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
       // console.log(`${operation} failed: ${error.message}`);
       console.log(error);
@@ -47,7 +47,12 @@ export class AuthenticationService {
   }
 
   login(account: string, password: string): Observable<any> {
-    return this.http.post<any>('http://10.49.8.222:8888/auth/login', { account, password }, httpOptions)
+    return this.http
+      .post<any>(
+        'http://10.49.8.222:8888/auth/login',
+        { account, password },
+        httpOptions
+      )
       .pipe(
         map(result => {
           this.errors.login = '';
@@ -61,8 +66,7 @@ export class AuthenticationService {
   }
 
   logout() {
-    localStorage.removeItem('userToken');
+    localStorage.clear();
     this.currentUserSubject.next(null);
   }
-
 }
