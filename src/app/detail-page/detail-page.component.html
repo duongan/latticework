@@ -7,19 +7,19 @@
       </div>
       <div class="card-body p-0">
         <div class="card-text mb-2">
-          <table class="border-0 ltw-detail-table text-left">
+          <table class="border-0 ltw-detail-table text-left" *ngIf="profileInfo">
             <tbody>
               <tr>
                 <td><i class="ltw-detail-cloud-icon"></i></td>
                 <td class="ltw-detail-label">Cloud Usage</td>
                 <td class="p-0">:</td>
-                <td>0.3 GB/2 GB</td>
+                <td> GB/ GB</td>
               </tr>
               <tr>
                 <td><i class="ltw-detail-disk-icon"></i></td>
                 <td class="ltw-detail-label">Disk Usage</td>
                 <td class="p-0">:</td>
-                <td>0.3 GB/2 GB</td>
+                <td> GB/{{profileInfo.disk_quota}} GB</td>
               </tr>
             </tbody>
           </table>
@@ -40,7 +40,7 @@
           <tr *ngFor="let detail of leftDetails">
             <td class="ltw-detail-label p-3 align-middle">{{detail.label}}</td>
             <td class="p-0 py-3 align-middle">:</td>
-            <td class="p-3 align-middle">{{detail.value}}</td>
+            <td class="p-3 align-middle text-wrap">{{detail.value}}</td>
           </tr>
         </tbody>
       </table>
@@ -50,7 +50,9 @@
             <td class="ltw-detail-label p-3 align-middle">{{detail.label}}</td>
             <td class="p-0 py-3 align-middle">:</td>
             <td class="p-3 align-middle d-flex align-items-center">
-              {{detail.value}}
+              <span class="text-wrap text-break">
+                {{detail.value}}
+              </span>
               <button type="button" class="btn btn-dark btn-sm round-corner ml-3"
                 *ngIf="detail.label === 'GUID'">Migrate</button>
             </td>
@@ -73,41 +75,18 @@
               <th scope="col">Description</th>
             </tr>
           </thead>
-          <tbody>
-            <tr>
-              <td>28 Oct 2019</td>
-              <td>OS Upgrade</td>
-              <td>OS Upgrade to 0.11.1</td>
+          <tbody *ngIf="activityList">
+            <tr *ngFor="let item of activityList">
+              <td>{{item.time}}</td>
+              <td>{{item.type}}</td>
+              <td>{{item.msg}}</td>
             </tr>
-            <tr>
-              <td>28 Oct 2019</td>
-              <td>OS Upgrade</td>
-              <td>OS Upgrade to 0.11.1</td>
-            </tr>
-            <tr>
-              <td>28 Oct 2019</td>
-              <td>OS Upgrade</td>
-              <td>OS Upgrade to 0.11.1</td>
-            </tr>
-            <tr>
-              <td>28 Oct 2019</td>
-              <td>OS Upgrade</td>
-              <td>OS Upgrade to 0.11.1</td>
-            </tr>
-            <tr>
-              <td>28 Oct 2019</td>
-              <td>OS Upgrade</td>
-              <td>OS Upgrade to 0.11.1</td>
-            </tr>
-            <tr>
-              <td>28 Oct 2019</td>
-              <td>OS Upgrade</td>
-              <td>OS Upgrade to 0.11.1</td>
-            </tr>
-            <tr>
-              <td>28 Oct 2019</td>
-              <td>OS Upgrade</td>
-              <td>OS Upgrade to 0.11.1</td>
+          </tbody>
+          <tbody *ngIf="appActivityList">
+            <tr *ngFor="let item of appActivityList">
+              <td>{{item.event_time}}</td>
+              <td>{{item.event_type}}</td>
+              <td>{{item.details}}</td>
             </tr>
           </tbody>
         </table>

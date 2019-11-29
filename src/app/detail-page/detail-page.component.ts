@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-detail-page',
@@ -6,80 +6,100 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./detail-page.component.scss']
 })
 export class DetailPageComponent implements OnInit {
-  public leftDetails: any;
-  public rightDetails: any;
+  public leftDetails: Array<any>;
+  public rightDetails: Array<any>;
+  @Input() profileInfo: any;
+  @Input() deviceInfo: any;
+  @Input() activityList: any;
+  @Input() appProfileInfo: any;
+  @Input() appActivityList: any;
 
   constructor() {
-    this.leftDetails = [
-      {
-        label: 'Display name',
-        value: 'Amber for Frank'
-      },
-      {
-        label: 'Model',
-        value: 'AM1121'
-      },
-      {
-        label: 'Serial Number',
-        value: '1234567'
-      },
-      {
-        label: 'Router board ID',
-        value: '1234567'
-      },
-      {
-        label: 'Router FW Version',
-        value: '11.25.12'
-      },
-      {
-        label: 'Default Password',
-        value: 'Password'
-      },
-      {
-        label: 'WAN Mac',
-        value: '01 f4 tg h4 11'
-      },
-      {
-        label: '2.4G MAC',
-        value: '192.0.1.2'
-      }
-    ];
-
-    this.rightDetails = [
-      {
-        label: 'Setup Info',
-        value: '28 Sep 2018 @ 6:22:45 (GMT -7:00)'
-      },
-      {
-        label: 'IP',
-        value: '192.1.2.2'
-      },
-      {
-        label: 'Assigned ID',
-        value: 'xxxxxxxx'
-      },
-      {
-        label: 'GUID',
-        value: '2345tgf45'
-      },
-      {
-        label: 'Mainboard ID',
-        value: 'AM112121'
-      },
-      {
-        label: 'Wifi SSID',
-        value: 'Frank 123'
-      },
-      {
-        label: '5G Mac',
-        value: 'AM12321'
-      },
-      {
-        label: 'OS Version',
-        value: '11.1'
-      }
-    ];
+    this.leftDetails = [];
+    this.rightDetails = [];
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+    if (this.profileInfo) {
+      this.leftDetails.push(
+        ...[
+          {
+            label: 'Display name',
+            value: this.profileInfo.display_name
+          },
+          {
+            label: 'Model',
+            value: this.deviceInfo.model_code
+          },
+          {
+            label: 'Serial Number',
+            value: this.deviceInfo.sn
+          },
+          {
+            label: 'Router board ID',
+            value: ''
+          },
+          {
+            label: 'Router FW Version',
+            value: ''
+          },
+          {
+            label: 'Default Password',
+            value: ''
+          },
+          {
+            label: 'WAN Mac',
+            value: ''
+          },
+          {
+            label: '2.4G MAC',
+            value: ''
+          }
+        ]
+      );
+
+      this.rightDetails.push(
+        ...[
+          {
+            label: 'Setup Info',
+            value: this.profileInfo.install_time
+          },
+          {
+            label: 'IP',
+            value: this.profileInfo.ip_addr
+          },
+          {
+            label: 'Assigned ID',
+            value: this.profileInfo.assign_id
+          },
+          {
+            label: 'GUID',
+            value: this.deviceInfo.guid
+          },
+          {
+            label: 'Mainboard ID',
+            value: ''
+          },
+          {
+            label: 'Wifi SSID',
+            value: ''
+          },
+          {
+            label: '5G Mac',
+            value: ''
+          }
+        ]
+      );
+    } else if (this.appProfileInfo) {
+      this.leftDetails.push({
+        label: 'Display name',
+        value: this.appProfileInfo.device_display_name
+      });
+
+      this.rightDetails.push({
+        label: 'OS Version',
+        value: this.appProfileInfo.os_version
+      });
+    }
+  }
 }

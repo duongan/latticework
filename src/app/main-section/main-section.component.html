@@ -1,38 +1,38 @@
 <mat-accordion multi="true">
-    <mat-expansion-panel class="no-box-shadow" style="border-top: none;" hideToggle
-      (opened)="firstPanelOpenState = true"
-      (closed)="firstPanelOpenState = false">
-        <mat-expansion-panel-header class="expansion-header">
-            <mat-panel-title class="text-header">User History</mat-panel-title>
-            <mat-icon *ngIf="!firstPanelOpenState" class="text-header">add</mat-icon>
-            <mat-icon *ngIf="firstPanelOpenState" class="text-header">remove</mat-icon>
-        </mat-expansion-panel-header>
-        
-        <app-user-history></app-user-history>
-        
-    </mat-expansion-panel>
-    <mat-expansion-panel class="no-box-shadow" hideToggle
-      (opened)="secondPanelOpenState = true"
-      (closed)="secondPanelOpenState = false">
-        <mat-expansion-panel-header class="expansion-header">
-            <mat-panel-title class="text-header">Amber for Munuswamy</mat-panel-title>
-            <mat-icon *ngIf="!secondPanelOpenState" class="text-header">add</mat-icon>
-            <mat-icon *ngIf="secondPanelOpenState" class="text-header">remove</mat-icon>
-        </mat-expansion-panel-header>
-        
-        <app-detail-page></app-detail-page>
-        
-    </mat-expansion-panel>
-    <mat-expansion-panel class="no-box-shadow" hideToggle
-      (opened)="thirdPanelOpenState = true"
-      (closed)="thirdPanelOpenState = false">
-        <mat-expansion-panel-header class="expansion-header">
-            <mat-panel-title class="text-header">Amber Log</mat-panel-title>
-            <mat-icon *ngIf="!thirdPanelOpenState" class="text-header">add</mat-icon>
-            <mat-icon *ngIf="thirdPanelOpenState" class="text-header">remove</mat-icon>
-        </mat-expansion-panel-header>
-        
-        <app-log></app-log>
-        
-    </mat-expansion-panel>
+  <mat-expansion-panel class="no-box-shadow" style="border-top: none;" hideToggle (opened)="firstPanelOpenState = true"
+    (closed)="firstPanelOpenState = false">
+    <mat-expansion-panel-header class="expansion-header">
+      <mat-panel-title class="text-header">User History</mat-panel-title>
+      <mat-icon *ngIf="!firstPanelOpenState" class="text-header">add</mat-icon>
+      <mat-icon *ngIf="firstPanelOpenState" class="text-header">remove</mat-icon>
+    </mat-expansion-panel-header>
+
+    <app-user-history></app-user-history>
+
+  </mat-expansion-panel>
+  <mat-expansion-panel class="no-box-shadow" hideToggle (opened)="secondPanelOpenState = true"
+    (closed)="secondPanelOpenState = false" *ngIf="amberInfo || appInfo">
+    <mat-expansion-panel-header class="expansion-header">
+      <mat-panel-title class="text-header">{{amberInfo ? 'Amber' : 'App'}} for Munuswamy</mat-panel-title>
+      <mat-icon *ngIf="!secondPanelOpenState" class="text-header">add</mat-icon>
+      <mat-icon *ngIf="secondPanelOpenState" class="text-header">remove</mat-icon>
+    </mat-expansion-panel-header>
+
+    <app-detail-page [profileInfo]="amberInfo.profileInfo" [deviceInfo]="amberInfo.deviceInfo"
+      [activityList]="amberInfo.activityEventList" *ngIf="amberInfo"></app-detail-page>
+    <app-detail-page [appProfileInfo]="appInfo.profileInfo" [appActivityList]="appInfo.activityEventList"
+      *ngIf="appInfo"></app-detail-page>
+
+  </mat-expansion-panel>
+  <mat-expansion-panel class="no-box-shadow" hideToggle (opened)="thirdPanelOpenState = true"
+    (closed)="thirdPanelOpenState = false" *ngIf="amberInfo || appInfo">
+    <mat-expansion-panel-header class="expansion-header">
+      <mat-panel-title class="text-header">Amber Log</mat-panel-title>
+      <mat-icon *ngIf="!thirdPanelOpenState" class="text-header">add</mat-icon>
+      <mat-icon *ngIf="thirdPanelOpenState" class="text-header">remove</mat-icon>
+    </mat-expansion-panel-header>
+
+    <app-log></app-log>
+
+  </mat-expansion-panel>
 </mat-accordion>

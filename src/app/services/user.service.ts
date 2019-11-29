@@ -44,14 +44,15 @@ export class UserService {
       .pipe(map(res => res.data));
   }
 
-  getUserDetail(email: string, refresh?: boolean): void {
+  getUserDetail(email: string, refresh?: boolean): Observable<any> {
     const index = this.users.findIndex(item => item.email === email);
     if (refresh || index === -1) {
-      this.http
+      return this.http
         .get<any>(this.urlService.get('userDetail', { email }))
-        .subscribe(res => this.updateStorage(res, email, index, refresh));
+        .pipe(tap(res => this.updateStorage(res, email, index, refresh)));
     }
     this.selectedUser$.next(this.users[index]);
+    return of(this.users[index]);
   }
 
   private updateStorage(
