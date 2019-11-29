@@ -7,7 +7,7 @@
           {{item.name}}
         </mat-panel-title>
         <div class="d-flex align-items-center justify-content-center mr-3">
-          <span class="badge badge-light badge-pill border border-dark">{{item.data?.length}}</span>
+          <span class="badge badge-light badge-pill border border-dark">{{item.data ? item.data.length : 0}}</span>
         </div>
       </mat-expansion-panel-header>
 
