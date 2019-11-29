@@ -7,13 +7,15 @@
           {{item.name}}
         </mat-panel-title>
         <div class="d-flex align-items-center justify-content-center mr-3">
-          <span class="badge badge-light badge-pill border border-dark">{{item.dataLength}}</span>
+          <span class="badge badge-light badge-pill border border-dark">{{item.data?.length}}</span>
         </div>
       </mat-expansion-panel-header>
 
       <div class="list-group list-group-flush">
-        <a class="list-group-item list-group-item-action" href="#"
-          *ngFor="let nas of item.data">{{item.name === 'App' ? nas.app_display_name : nas.display_name}}</a>
+        <a class="list-group-item list-group-item-action" href="#" *ngFor="let nas of item.data"
+          (click)="getDetailInfo($event, nas, item)">
+          {{item.name === 'App' ? nas.app_display_name : nas.display_name}}
+        </a>
       </div>
 
     </mat-expansion-panel>

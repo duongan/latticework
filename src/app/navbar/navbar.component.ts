@@ -5,7 +5,8 @@ import {
   debounceTime,
   distinctUntilChanged,
   switchMap,
-  tap
+  tap,
+  catchError
 } from 'rxjs/operators';
 import { UserService } from '../services/user.service';
 
@@ -26,13 +27,17 @@ export class NavbarComponent implements OnInit {
   ) {}
 
   ngOnInit() {
+    const catchErr = catchError(() => {
+      console.error('User not found');
+      return of([]);
+    });
     this.search = (text$: Observable<string>) =>
       text$.pipe(
         debounceTime(200),
         distinctUntilChanged(),
         tap(() => (this.loading = true)),
         switchMap((term: string) =>
-          term ? this.userService.searchUser(term) : of(null)
+          this.userService.searchUser(term).pipe(catchErr)
         ),
         tap(() => (this.loading = false))
       );
@@ -49,9 +54,8 @@ export class NavbarComponent implements OnInit {
     }
 
     this.loading = true;
-    this.userService.currentUser.subscribe(res => {
+    this.userService.getUserDetail(email).subscribe(() => {
       this.loading = false;
     });
-    this.userService.getUserDetail(email);
   }
 }

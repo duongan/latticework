@@ -7,7 +7,12 @@ export class UrlService {
   private host = 'http://10.49.8.222:8888';
   private urls = {
     userSearch: `${this.host}/user/search/{identity}`,
-    userDetail: `${this.host}/user/details/{email}`
+    userDetail: `${this.host}/user/details/{email}`,
+    amberProfile: `${this.host}/amber/profile/{profileId}`,
+    amberDeviceInfo: `${this.host}/amber/device_info/{assignId}`,
+    activityInfo: `${this.host}/amber/activity_event_list/{profileId}`,
+    appProfile: `${this.host}/clientapp/profile/{profileId}`,
+    appActivityInfo: `${this.host}/clientapp/activity_event_list/{profileId}`
   };
 
   constructor() {}
