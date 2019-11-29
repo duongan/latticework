@@ -13,7 +13,9 @@ export class UrlService {
     amberDeviceInfo: `${this.host}/amber/device_info/{assignId}`,
     activityInfo: `${this.host}/amber/activity_event_list/{profileId}`,
     appProfile: `${this.host}/clientapp/profile/{profileId}`,
-    appActivityInfo: `${this.host}/clientapp/activity_event_list/{profileId}`
+    appActivityInfo: `${this.host}/clientapp/activity_event_list/{profileId}`,
+    amberLogList: `${this.host}/amber/log_authorization_list/{profileId}`,
+    appLogList: `${this.host}/clientapp/log_authorization_list/{profileId}`
   };
 
   constructor() {}

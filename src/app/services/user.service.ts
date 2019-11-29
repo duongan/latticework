@@ -15,8 +15,8 @@ import { UrlService } from './url.service';
 })
 export class UserService {
   private users: Array<any>;
-  private userList$ = new Subject<Array<any>>();
-  private selectedUser$ = new Subject<any>();
+  private userList$: BehaviorSubject<Array<any>>;
+  private selectedUser$: BehaviorSubject<any>;
   constructor(private http: HttpService, private urlService: UrlService) {
     const cache = localStorage.getItem('users');
     if (cache) {
@@ -24,7 +24,8 @@ export class UserService {
     } else {
       this.users = [];
     }
-    this.userList$.next(this.users);
+    this.userList$ = new BehaviorSubject(this.users);
+    this.selectedUser$ = new BehaviorSubject({});
   }
 
   get userList(): Observable<Array<any>> {
@@ -69,7 +70,7 @@ export class UserService {
       this.users.splice(index, 1);
     }
     this.selectedUser$.next(obj);
-    this.users.push(obj);
+    this.users.unshift(obj);
     this.userList$.next(this.users);
     localStorage.setItem('users', JSON.stringify(this.users));
   }
