@@ -3,6 +3,8 @@ import { DomSanitizer } from '@angular/platform-browser';
 import { MatIconRegistry } from '@angular/material/icon';
 import { UserService } from '../services/user.service';
 import { SideBar } from '../types/sidebar';
+import { AmberService } from '../services/amber.service';
+import { AppService } from '../services/app.service';
 
 @Component({
   selector: 'app-sidebar',
@@ -15,7 +17,9 @@ export class SidebarComponent implements OnInit {
   constructor(
     private iconRegistry: MatIconRegistry,
     private sanitizer: DomSanitizer,
-    private userService: UserService
+    private userService: UserService,
+    private amberService: AmberService,
+    private appService: AppService
   ) {
     iconRegistry.addSvgIcon(
       'amber',
@@ -33,20 +37,17 @@ export class SidebarComponent implements OnInit {
       {
         name: 'Amber',
         icon: 'amber',
-        data: [],
-        dataLength: 0
+        data: []
       },
       {
         name: 'App',
         icon: 'app',
-        data: [],
-        dataLength: 0
+        data: []
       },
       {
         name: 'Amber X',
         icon: 'amberX',
-        data: [],
-        dataLength: 0
+        data: []
       }
     ];
   }
@@ -58,9 +59,16 @@ export class SidebarComponent implements OnInit {
       }
 
       this.sidebarList[0].data = user.nas_list;
-      this.sidebarList[0].dataLength = user.nas_list ? user.nas_list.length : 0;
       this.sidebarList[1].data = user.app_list;
-      this.sidebarList[1].dataLength = user.app_list ? user.app_list.length : 0;
     });
+  }
+
+  getDetailInfo(event: any, item: any, currentApp: any) {
+    event.preventDefault();
+    if (currentApp.name === 'Amber') {
+      this.amberService.getAmberInfo(item.nas_profile_id, item.assign_id);
+    } else if (currentApp.name === 'App') {
+      this.appService.getAppInfo(item.app_profile_id);
+    }
   }
 }
