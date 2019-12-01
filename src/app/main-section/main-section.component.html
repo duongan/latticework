@@ -13,14 +13,9 @@
   <mat-expansion-panel class="no-box-shadow" hideToggle (opened)="secondPanelOpenState = true"
     (closed)="secondPanelOpenState = false">
     <mat-expansion-panel-header class="expansion-header">
-      <mat-panel-title class="text-header">{{amberInfo ? 'Amber' : 'App'}} for Munuswamy</mat-panel-title>
-      <mat-panel-description>
-        <mat-progress-spinner
-          mode="indeterminate"
-          value="50"
-          diameter="20">
-        </mat-progress-spinner>
-      </mat-panel-description>
+      <mat-panel-title class="text-header">
+        {{getPanelDetailTitle()}}
+      </mat-panel-title>
       <mat-icon *ngIf="!secondPanelOpenState" class="text-header">add</mat-icon>
       <mat-icon *ngIf="secondPanelOpenState" class="text-header">remove</mat-icon>
     </mat-expansion-panel-header>
@@ -36,7 +31,7 @@
   <mat-expansion-panel class="no-box-shadow" hideToggle (opened)="thirdPanelOpenState = true"
     (closed)="thirdPanelOpenState = false">
     <mat-expansion-panel-header class="expansion-header">
-      <mat-panel-title class="text-header">Amber Log</mat-panel-title>
+      <mat-panel-title class="text-header">{{amberInfo ? 'Amber' : appInfo ? 'App' : 'Amber/App'}} Log</mat-panel-title>
       <mat-icon *ngIf="!thirdPanelOpenState" class="text-header">add</mat-icon>
       <mat-icon *ngIf="thirdPanelOpenState" class="text-header">remove</mat-icon>
     </mat-expansion-panel-header>

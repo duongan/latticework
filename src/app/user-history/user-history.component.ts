@@ -10,7 +10,7 @@ import { UserService } from '../services/user.service';
 })
 export class UserHistoryComponent implements OnInit, OnDestroy, AfterViewInit {
   @ViewChild(DataTableDirective) dtElement: DataTableDirective;
-  dtOptions: DataTables.Settings = {};
+  dtOptions: any = {};
   dtTrigger: Subject<any> = new Subject();
   dataSource: any[] = [];
   selectedUser: any;

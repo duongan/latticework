@@ -16,6 +16,7 @@ export class MainSectionComponent implements OnInit {
   thirdPanelOpenState = false;
   public amberInfo: Amber;
   public appInfo: App;
+  public selectedUser: any;
 
   constructor(
     private amberService: AmberService,
@@ -24,7 +25,8 @@ export class MainSectionComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.userService.currentUser.subscribe(() => {
+    this.userService.currentUser.subscribe(user => {
+      this.selectedUser = user;
       this.amberInfo = null;
       this.appInfo = null;
     });
@@ -47,5 +49,17 @@ export class MainSectionComponent implements OnInit {
       this.appInfo = result;
       this.amberInfo = null;
     });
+  }
+
+  getPanelDetailTitle() {
+    const { data } = this.selectedUser;
+    const name = data ? data.first_name : '...';
+    if (!this.amberInfo && !this.appInfo) {
+      return 'Amber/App Details';
+    } else if (this.amberInfo) {
+      return `Amber for ${name}`;
+    } else if (this.appInfo) {
+      return `App for ${name}`;
+    }
   }
 }

@@ -10,7 +10,7 @@ import { DataTableDirective } from 'angular-datatables';
 export class LogComponent implements OnInit, AfterViewInit, OnDestroy {
   @ViewChild(DataTableDirective) dtElement: DataTableDirective;
   @Input() logList: any[];
-  dtOptions: DataTables.Settings = {};
+  dtOptions: any = {};
   dtTrigger: Subject<any> = new Subject();
 
   constructor() { }
