@@ -11,9 +11,16 @@
 
   </mat-expansion-panel>
   <mat-expansion-panel class="no-box-shadow" hideToggle (opened)="secondPanelOpenState = true"
-    (closed)="secondPanelOpenState = false" *ngIf="amberInfo || appInfo">
+    (closed)="secondPanelOpenState = false">
     <mat-expansion-panel-header class="expansion-header">
       <mat-panel-title class="text-header">{{amberInfo ? 'Amber' : 'App'}} for Munuswamy</mat-panel-title>
+      <mat-panel-description>
+        <mat-progress-spinner
+          mode="indeterminate"
+          value="50"
+          diameter="20">
+        </mat-progress-spinner>
+      </mat-panel-description>
       <mat-icon *ngIf="!secondPanelOpenState" class="text-header">add</mat-icon>
       <mat-icon *ngIf="secondPanelOpenState" class="text-header">remove</mat-icon>
     </mat-expansion-panel-header>
@@ -23,16 +30,21 @@
     <app-detail-page [appProfileInfo]="appInfo.profileInfo" [appActivityList]="appInfo.activityEventList"
       *ngIf="appInfo"></app-detail-page>
 
+      <div *ngIf="!amberInfo || !appInfo" class="text-center">No data to display</div>
+
   </mat-expansion-panel>
   <mat-expansion-panel class="no-box-shadow" hideToggle (opened)="thirdPanelOpenState = true"
-    (closed)="thirdPanelOpenState = false" *ngIf="amberInfo || appInfo">
+    (closed)="thirdPanelOpenState = false">
     <mat-expansion-panel-header class="expansion-header">
       <mat-panel-title class="text-header">Amber Log</mat-panel-title>
       <mat-icon *ngIf="!thirdPanelOpenState" class="text-header">add</mat-icon>
       <mat-icon *ngIf="thirdPanelOpenState" class="text-header">remove</mat-icon>
     </mat-expansion-panel-header>
 
-    <app-log [logList]="amberInfo.logList"></app-log>
+    <app-log [logList]="amberInfo.logList" *ngIf="amberInfo"></app-log>
+    <app-log [logList]="appInfo.logList" *ngIf="appInfo"></app-log>
+
+    <div *ngIf="!amberInfo || !appInfo" class="text-center">No data to display</div>
 
   </mat-expansion-panel>
 </mat-accordion>
