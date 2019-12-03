@@ -17,6 +17,8 @@ export class UserService {
   private users: Array<any>;
   private userList$: BehaviorSubject<Array<any>>;
   private selectedUser$: BehaviorSubject<any>;
+  private selectedSideBarItem: string = null;
+
   constructor(private http: HttpService, private urlService: UrlService) {
     const cache = localStorage.getItem('users');
     if (cache) {
@@ -53,6 +55,7 @@ export class UserService {
         .pipe(tap(res => this.updateStorage(res, email, index, refresh)));
     }
     this.selectedUser$.next(this.users[index]);
+    this.setSelectedSideBarItem(null);
     return of(this.users[index]);
   }
 
@@ -74,4 +77,13 @@ export class UserService {
     this.userList$.next(this.users);
     localStorage.setItem('users', JSON.stringify(this.users));
   }
+
+  setSelectedSideBarItem(profileId: string): void {
+    this.selectedSideBarItem = profileId;
+  }
+
+  getSelectedSideBarItem(): string {
+    return this.selectedSideBarItem;
+  }
+
 }

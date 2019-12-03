@@ -23,6 +23,8 @@ import { DataTablesModule } from 'angular-datatables';
 import { RequestLogButtonComponent } from './request-log-button/request-log-button.component';
 import { LogComponent } from './log/log.component';
 import { DetailPageComponent } from './detail-page/detail-page.component';
+import { MatDialogModule } from '@angular/material/dialog';
+import { DialogComponent } from './dialog/dialog.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +38,8 @@ import { DetailPageComponent } from './detail-page/detail-page.component';
     UserHistoryComponent,
     LogComponent,
     RequestLogButtonComponent,
-    DetailPageComponent
+    DetailPageComponent,
+    DialogComponent
   ],
   imports: [
     BrowserModule,
@@ -49,10 +52,13 @@ import { DetailPageComponent } from './detail-page/detail-page.component';
     MatIconModule,
     MatProgressSpinnerModule,
     DataTablesModule,
-
+    MatDialogModule,
     BrowserAnimationsModule
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [
+    DialogComponent
+  ]
 })
 export class AppModule {}

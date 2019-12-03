@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import { MatIconRegistry } from '@angular/material/icon';
 import { UserService } from '../services/user.service';
@@ -12,6 +12,7 @@ import { AppService } from '../services/app.service';
   styleUrls: ['./sidebar.component.scss']
 })
 export class SidebarComponent implements OnInit {
+  @Input() ngClass: any;
   public sidebarList: SideBar[];
 
   constructor(
@@ -65,10 +66,23 @@ export class SidebarComponent implements OnInit {
 
   getDetailInfo(event: any, item: any, currentApp: any) {
     event.preventDefault();
-    if (currentApp.name === 'Amber') {
+    const selected = this.userService.getSelectedSideBarItem();
+    if (currentApp.name === 'Amber' && selected !== item.nas_profile_id) {
       this.amberService.getAmberInfo(item.nas_profile_id, item.assign_id);
-    } else if (currentApp.name === 'App') {
+      this.userService.setSelectedSideBarItem(item.nas_profile_id);
+    } else if (currentApp.name === 'App' && selected !== item.app_profile_id) {
       this.appService.getAppInfo(item.app_profile_id);
+      this.userService.setSelectedSideBarItem(item.app_profile_id);
     }
+  }
+
+  isSelectedItem(data: any, type: any) {
+    let profileId = null;
+    if (type.name === 'Amber') {
+      profileId = data.nas_profile_id;
+    } else if (type.name === 'App') {
+      profileId = data.app_profile_id;
+    }
+    return this.userService.getSelectedSideBarItem() === profileId;
   }
 }

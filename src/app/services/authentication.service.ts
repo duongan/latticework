@@ -36,7 +36,6 @@ export class AuthenticationService {
   private handleError<T>(operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
       // console.log(`${operation} failed: ${error.message}`);
-      console.log(error);
       if (error.status !== 200) {
         this.errors.login = 'Incorrect account or password';
       }

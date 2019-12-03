@@ -1,11 +1,12 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, OnChanges, Inject, LOCALE_ID, SimpleChange } from '@angular/core';
+import { formatDate } from '@angular/common';
 
 @Component({
   selector: 'app-detail-page',
   templateUrl: './detail-page.component.html',
   styleUrls: ['./detail-page.component.scss']
 })
-export class DetailPageComponent implements OnInit {
+export class DetailPageComponent implements OnInit, OnChanges {
   public leftDetails: Array<any>;
   public rightDetails: Array<any>;
   @Input() profileInfo: any;
@@ -14,26 +15,33 @@ export class DetailPageComponent implements OnInit {
   @Input() appProfileInfo: any;
   @Input() appActivityList: any;
 
-  constructor() {
+  constructor(@Inject(LOCALE_ID) private locale: string) {
     this.leftDetails = [];
     this.rightDetails = [];
   }
 
+  ngOnChanges() {
+    this.initData();
+  }
+
   ngOnInit() {
+    
+  }
+
+  initData() {
     if (this.profileInfo) {
-      this.leftDetails.push(
-        ...[
+      this.leftDetails = [
           {
             label: 'Display name',
-            value: this.profileInfo.display_name
+            value: this.getInfo('profileInfo', 'display_name')
           },
           {
             label: 'Model',
-            value: this.deviceInfo.model_code
+            value: this.getInfo('deviceInfo', 'model_code')
           },
           {
             label: 'Serial Number',
-            value: this.deviceInfo.sn
+            value: this.getInfo('deviceInfo', 'sn')
           },
           {
             label: 'Router board ID',
@@ -55,26 +63,24 @@ export class DetailPageComponent implements OnInit {
             label: '2.4G MAC',
             value: ''
           }
-        ]
-      );
+      ];
 
-      this.rightDetails.push(
-        ...[
+      this.rightDetails = [
           {
             label: 'Setup Info',
-            value: this.profileInfo.install_time
+            value: formatDate(this.getInfo('profileInfo', 'install_time'), 'd MMM y @ h:mm:ss a (zzzz)', this.locale)
           },
           {
             label: 'IP',
-            value: this.profileInfo.ip_addr
+            value: this.getInfo('profileInfo', 'ip_addr')
           },
           {
             label: 'Assigned ID',
-            value: this.profileInfo.assign_id
+            value: this.getInfo('profileInfo', 'assign_id')
           },
           {
             label: 'GUID',
-            value: this.deviceInfo.guid
+            value: this.getInfo('deviceInfo', 'guid')
           },
           {
             label: 'Mainboard ID',
@@ -88,18 +94,24 @@ export class DetailPageComponent implements OnInit {
             label: '5G Mac',
             value: ''
           }
-        ]
-      );
+      ];
     } else if (this.appProfileInfo) {
       this.leftDetails.push({
         label: 'Display name',
-        value: this.appProfileInfo.device_display_name
+        value: this.getInfo('appProfileInfo', 'device_display_name')
       });
 
       this.rightDetails.push({
         label: 'OS Version',
-        value: this.appProfileInfo.os_version
+        value: this.getInfo('appProfileInfo', 'os_version')
       });
     }
+  }
+
+  getInfo(type: string, field: string): string {
+    if (this[type] && this[type][field]) {
+      return this[type][field];
+    }
+    return '';
   }
 }

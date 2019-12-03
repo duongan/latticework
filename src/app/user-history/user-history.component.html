@@ -16,7 +16,7 @@
       <td></td>
       <td>{{ item.data.first_name }} {{item.data.last_name}}</td>
       <td>{{ item.data.user_account }}</td>
-      <td>{{ item.data.language }}</td>
+      <td>{{ getLanguageName(item.data.language) }}</td>
       <td>{{ item.data.activation === 1 ? 'Active' : 'In Active' }}</td>
       <td>{{ item.data.create_time | date: 'd MMM y @ h:mm:ss a (zzzz)' }}</td>
       <td style="width: 5%;">

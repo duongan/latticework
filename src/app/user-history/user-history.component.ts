@@ -2,6 +2,7 @@ import { Component, OnInit, OnDestroy, AfterViewInit, ViewChild } from '@angular
 import { Subject, Observable } from 'rxjs';
 import { DataTableDirective } from 'angular-datatables';
 import { UserService } from '../services/user.service';
+import { UtilsService } from '../services/utils.service';
 
 @Component({
   selector: 'app-user-history',
@@ -17,15 +18,15 @@ export class UserHistoryComponent implements OnInit, OnDestroy, AfterViewInit {
   userListSubscription: any;
   currentUserSubscription: any;
 
-  constructor(private userService: UserService) { }
+  constructor(
+    private userService: UserService,
+    private utils: UtilsService  
+  ) { }
 
   ngOnInit() {
     this.dtOptions = {
       searching: false,
       columnDefs: [
-        { orderable: false, targets: 1 },
-        { orderable: false, targets: 2 },
-        { orderable: false, targets: 3 },
         { orderable: false, targets: 6 },
         { orderable: false, targets: 7 }
       ],
@@ -37,14 +38,12 @@ export class UserHistoryComponent implements OnInit, OnDestroy, AfterViewInit {
           this.userService.getUserDetail(data[2]);
         });
       },
-      createdRow: (row, data) => {
+      createdRow: (row: any, data: any) => {
         $(row).css({'cursor': 'pointer', 'background-color': '#ffffff'});
         if (this.selectedUser && this.selectedUser.email === data[2]) {
           $(row).css('background-color', '#cccccc');
         }
-      },
-      dom: 'Bfrtip',
-      buttons: []
+      }
     };
 
     this.userListSubscription = this.userService.userList.subscribe(users => {
@@ -77,5 +76,9 @@ export class UserHistoryComponent implements OnInit, OnDestroy, AfterViewInit {
       dtInstance.destroy();
       this.dtTrigger.next();
     });
+  }
+
+  getLanguageName(code: string): void {
+    return this.utils.getLanguageName(code);
   }
 }

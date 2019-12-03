@@ -11,7 +11,7 @@
 
   </mat-expansion-panel>
   <mat-expansion-panel class="no-box-shadow" hideToggle (opened)="secondPanelOpenState = true"
-    (closed)="secondPanelOpenState = false">
+    (closed)="secondPanelOpenState = false" [expanded]="secondPanelOpenState">
     <mat-expansion-panel-header class="expansion-header">
       <mat-panel-title class="text-header">
         {{getPanelDetailTitle()}}
@@ -25,21 +25,21 @@
     <app-detail-page [appProfileInfo]="appInfo.profileInfo" [appActivityList]="appInfo.activityEventList"
       *ngIf="appInfo"></app-detail-page>
 
-      <div *ngIf="!amberInfo || !appInfo" class="text-center">No data to display</div>
+      <div *ngIf="!isSelectedUser() || (!isAmberInfoAvailable() && !isAppInfoAvailable())" class="text-center">No data to display</div>
 
   </mat-expansion-panel>
   <mat-expansion-panel class="no-box-shadow" hideToggle (opened)="thirdPanelOpenState = true"
-    (closed)="thirdPanelOpenState = false">
+    (closed)="thirdPanelOpenState = false" [expanded]="thirdPanelOpenState">
     <mat-expansion-panel-header class="expansion-header">
-      <mat-panel-title class="text-header">{{amberInfo ? 'Amber' : appInfo ? 'App' : 'Amber/App'}} Log</mat-panel-title>
+      <mat-panel-title class="text-header">{{ !isSelectedUser() || (!isAmberInfoAvailable() && !isAppInfoAvailable()) ? 'Amber/App' : amberInfo ? 'Amber' : 'App'}} Log</mat-panel-title>
       <mat-icon *ngIf="!thirdPanelOpenState" class="text-header">add</mat-icon>
       <mat-icon *ngIf="thirdPanelOpenState" class="text-header">remove</mat-icon>
     </mat-expansion-panel-header>
 
-    <app-log [logList]="amberInfo.logList" *ngIf="amberInfo"></app-log>
-    <app-log [logList]="appInfo.logList" *ngIf="appInfo"></app-log>
+    <app-log [amber]="amberInfo" *ngIf="amberInfo"></app-log>
+    <app-log [app]="appInfo" *ngIf="appInfo"></app-log>
 
-    <div *ngIf="!amberInfo || !appInfo" class="text-center">No data to display</div>
+    <div *ngIf="!isSelectedUser() || (!isAmberInfoAvailable() && !isAppInfoAvailable())" class="text-center">No data to display</div>
 
   </mat-expansion-panel>
 </mat-accordion>

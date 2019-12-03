@@ -38,6 +38,7 @@ export class MainSectionComponent implements OnInit {
       }
       this.amberInfo = result;
       this.appInfo = null;
+      this.expand();
     });
 
     this.appService.appInfo.subscribe((result: App) => {
@@ -48,6 +49,7 @@ export class MainSectionComponent implements OnInit {
       }
       this.appInfo = result;
       this.amberInfo = null;
+      this.expand();
     });
   }
 
@@ -62,4 +64,22 @@ export class MainSectionComponent implements OnInit {
       return `App for ${name}`;
     }
   }
+
+  isSelectedUser() {
+    return this.selectedUser && Object.keys(this.selectedUser).length;
+  }
+
+  isAmberInfoAvailable() {
+    return this.amberInfo && Object.keys(this.amberInfo).length;
+  }
+
+  isAppInfoAvailable() {
+    return this.appInfo && Object.keys(this.appInfo).length;
+  }
+
+  expand() {
+    this.secondPanelOpenState = true;
+    this.thirdPanelOpenState = true;
+  }
+
 }
