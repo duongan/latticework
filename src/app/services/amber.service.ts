@@ -73,15 +73,12 @@ export class AmberService {
     zip(
       this.getProfileInfo(profileId),
       this.getDeviceInfo(assignId),
-      this.getActivityEventList(profileId),
-      this.getLogList(profileId)
-    ).subscribe(([profileInfo, deviceInfo, activityEventList, logList]) => {
-      // console.log(profileInfo, deviceInfo, activityEventList, logList);
+      this.getActivityEventList(profileId)
+    ).subscribe(([profileInfo, deviceInfo, activityEventList]) => {
       this.amberInfo$.next({
         profileInfo,
         deviceInfo,
-        activityEventList,
-        logList
+        activityEventList
       });
     });
   }

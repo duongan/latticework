@@ -51,7 +51,7 @@ export class LogComponent implements OnInit, OnChanges, AfterViewInit, OnDestroy
   }
 
   ngOnChanges() {
-    this.logList = this.amber ? this.amber.logList : this.app.logList;
+    this.loadLogList();
   }
 
   download() {
@@ -81,21 +81,23 @@ export class LogComponent implements OnInit, OnChanges, AfterViewInit, OnDestroy
     }
   }
 
-  reloadLogs(): void {
+  loadLogList(): void {
     this.loading = true;
+    let profileId: string;
+    let service: any;
     if (this.amber) {
-      this.amberService.getLogList(this.amber.profileInfo.nas_profile_id)
-                .subscribe((logs: any) => {
-                  this.loading = false;
-                  this.logList = logs;
-                });
+      profileId = this.amber.profileInfo.nas_profile_id;
+      service = this.amberService;
     } else if (this.app) {
-      this.appService.getLogList(this.app.profileInfo.app_profile_id)
-              .subscribe((logs: any) => {
-                this.loading = false;
-                this.logList = logs;
-              });
+      profileId = this.app.profileInfo.app_profile_id;
+      service = this.appService;
     }
+    service.getLogList(profileId)
+      .subscribe((logs: any) => {
+        this.loading = false;
+        this.logList = logs;
+        this.rerenderTable();
+      });
   }
 
   ngAfterViewInit() {
@@ -122,6 +124,16 @@ export class LogComponent implements OnInit, OnChanges, AfterViewInit, OnDestroy
     this.dialog.open(DialogComponent, {
       width: '350px',
       data
+    });
+  }
+
+  rerenderTable(): void {
+    if (!this.dtElement || !this.dtElement.dtInstance) {
+      return;
+    }
+    this.dtElement.dtInstance.then((dtInstance: DataTables.Api) => {
+      dtInstance.destroy();
+      this.dtTrigger.next();
     });
   }
 

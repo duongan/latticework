@@ -13,6 +13,7 @@ export class LoginComponent implements OnInit {
   loginForm: FormGroup;
   submitted = false;
   loading = false;
+  errors: any;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -23,6 +24,7 @@ export class LoginComponent implements OnInit {
       if (this.auth.currentUserValue) {
         this.router.navigate(['/dashboard']);
       }
+      this.errors = this.auth.authErrors;
     }
 
   ngOnInit() {

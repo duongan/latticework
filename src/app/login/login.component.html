@@ -14,8 +14,8 @@
     <form [formGroup]="loginForm" (ngSubmit)="signIn()">
       <div class="row">
         <div class="col-md-3"></div>
-        <div class="alert alert-danger col-md-6" role="alert" *ngIf="auth.authErrors.login">
-            {{auth.authErrors.login}}
+        <div class="alert alert-danger col-md-6" role="alert" *ngIf="errors.login">
+            {{errors.login}}
         </div>
         <div class="col-md-3"></div>
       </div>

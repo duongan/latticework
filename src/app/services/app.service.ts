@@ -63,13 +63,11 @@ export class AppService {
 
     zip(
       this.getProfileInfo(profileId),
-      this.getActivityEventList(profileId),
-      this.getLogList(profileId)
-    ).subscribe(([profileInfo, activityEventList, logList]) => {
+      this.getActivityEventList(profileId)
+    ).subscribe(([profileInfo, activityEventList]) => {
       this.appInfo$.next({
         profileInfo,
-        activityEventList,
-        logList
+        activityEventList
       });
     });
   }
