@@ -1,10 +1,10 @@
-<button type="button" class="btn btn-sm btn-dark round-corner" [ngbPopover]="popContent" placement="bottom"
+<button type="button" class="btn btn-sm btn-dark round-corner" [ngbPopover]="popContent" placement="top"
   [autoClose]="false" triggers="manual" #pop="ngbPopover" (click)="pop.toggle()" container="body"
   popoverClass="request-log-popover">
   Request log
 </button>
 <ng-template #popContent>
-  <form [formGroup]="form" #formDir="ngForm" class="form-inline" (ngSubmit)="form.valid && pop.close()" novalidate>
+  <form [formGroup]="form" #formDir="ngForm" class="form-inline" (ngSubmit)="form.valid && submit(pop)" novalidate>
     <div class="form-row">
       <div class="col">
         <p>Please enter the Zendesk number to display the Amber log details</p>
@@ -21,7 +21,7 @@
         </div>
       </div>
       <div class="form-group col-4 align-items-start">
-        <button type="submit" class="btn btn-dark btn-sm round-corner">Submit</button>
+        <button type="submit" class="btn btn-dark btn-sm round-corner" [disabled]="f.invalid || requesting">Submit</button>
       </div>
     </div>
   </form>

@@ -1,4 +1,4 @@
-<div class="row pt-4 no-gutters">
+<div class="row pt-4 no-gutters" style="margin-bottom: 10px;">
   <!-- 1 -->
   <div class="col-12 col-md-3">
     <div class="card border-0 text-center">
@@ -27,7 +27,7 @@
 
         <button type="button" class="btn btn-sm btn-dark round-corner mr-2">Remote Debug</button>
 
-        <app-request-log-button></app-request-log-button>
+        <app-request-log-button [type]="type" [profile]="profile"></app-request-log-button>
 
       </div>
     </div>
@@ -77,14 +77,14 @@
           </thead>
           <tbody *ngIf="activityList">
             <tr *ngFor="let item of activityList">
-              <td>{{item.time}}</td>
+              <td>{{item.time | date: 'd MMM y'}}</td>
               <td>{{item.type}}</td>
               <td>{{item.msg}}</td>
             </tr>
           </tbody>
           <tbody *ngIf="appActivityList">
             <tr *ngFor="let item of appActivityList">
-              <td>{{item.event_time}}</td>
+              <td>{{item.event_time | date: 'd MMM y'}}</td>
               <td>{{item.event_type}}</td>
               <td>{{item.details}}</td>
             </tr>

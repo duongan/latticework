@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { BehaviorSubject, Observable, of } from 'rxjs';
 import { map, tap, catchError } from 'rxjs/operators';
+import { UrlService } from './url.service';
 
 const httpOptions = {
   headers: new HttpHeaders({
@@ -19,10 +20,8 @@ export class AuthenticationService {
     login: ''
   };
 
-  constructor(private http: HttpClient) {
-    this.currentUserSubject = new BehaviorSubject<any>(
-      localStorage.getItem('userToken')
-    );
+  constructor(private http: HttpClient, private urlService: UrlService) {
+    this.currentUserSubject = new BehaviorSubject<any>(localStorage.getItem('currentUser'));
     this.currentUser = this.currentUserSubject.asObservable();
   }
 
@@ -37,8 +36,7 @@ export class AuthenticationService {
   private handleError<T>(operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
       // console.log(`${operation} failed: ${error.message}`);
-      console.log(error);
-      if (error.status === 500) {
+      if (error.status !== 200) {
         this.errors.login = 'Incorrect account or password';
       }
       // Let the app keep running by returning an empty result.
@@ -47,19 +45,16 @@ export class AuthenticationService {
   }
 
   login(account: string, password: string): Observable<any> {
-    return this.http
-      .post<any>(
-        'http://10.49.8.222:8888/auth/login',
-        { account, password },
-        httpOptions
-      )
+    const uri = this.urlService.get('login');
+    return this.http.post<any>(uri, { account, password }, httpOptions)
       .pipe(
         map(result => {
           this.errors.login = '';
           const { token } = result.data;
-          localStorage.setItem('userToken', token);
-          this.currentUserSubject.next(token);
-          return result;
+          const currentUser = JSON.stringify({ account, token });
+          localStorage.setItem('currentUser', currentUser);
+          this.currentUserSubject.next(currentUser);
+          return currentUser;
         }),
         catchError(this.handleError('login'))
       );

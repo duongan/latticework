@@ -44,7 +44,26 @@ export class AmberService {
 
     return this.http
       .get(this.urlService.get('activityInfo', { profileId }))
-      .pipe(map((res: any) => res.data));
+      .pipe(map((res: any) => {
+        if (res && res.data) {
+          return res.data;
+        }
+        return [];
+      }));
+  }
+
+  getLogList(profileId: string): Observable<any> {
+    if (!profileId) {
+      return of(null);
+    }
+    return this.http
+      .get(this.urlService.get('amberLogList', { profileId }))
+      .pipe(map((res: any) => {
+        if (res) {
+          return res.data;
+        }
+        return [];
+      }));
   }
 
   getAmberInfo(profileId: string, assignId: string): void {
@@ -54,12 +73,15 @@ export class AmberService {
     zip(
       this.getProfileInfo(profileId),
       this.getDeviceInfo(assignId),
-      this.getActivityEventList(profileId)
-    ).subscribe(([profileInfo, deviceInfo, activityEventList]) => {
+      this.getActivityEventList(profileId),
+      this.getLogList(profileId)
+    ).subscribe(([profileInfo, deviceInfo, activityEventList, logList]) => {
+      // console.log(profileInfo, deviceInfo, activityEventList, logList);
       this.amberInfo$.next({
         profileInfo,
         deviceInfo,
-        activityEventList
+        activityEventList,
+        logList
       });
     });
   }

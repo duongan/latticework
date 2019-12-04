@@ -1,22 +1,45 @@
-<table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="table-striped">
+<div class="row">
+  <div class="col-md-2 log-buttons" style="margin-bottom: 20px; margin-left: 10px;">
+    <button type="button" class="btn btn-outline-secondary" (click)="download()">
+      <img src="assets/download.png" alt="download">
+    </button>
+    <button type="button" style="margin-left: 10px;" class="btn btn-outline-secondary" (click)="reloadLogs()">
+      <img src="assets/refresh.png" alt="refresh" >
+    </button>
+  </div>
+</div>
+<table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="table table-striped">
   <thead>
     <tr>
-      <th style="padding-left: 10px;"><input type="checkbox" value="">&nbsp;&nbsp;Ticket Number</th>
+      <th style="padding-left: 10px;">Ticket Number</th>
       <th>Log Name</th>
-      <th>&nbsp;</th>
+      <th>Status</th>
+      <!-- <th>&nbsp;</th> -->
       <th>Create Date</th>
       <th>Time Upload</th>
     </tr>
   </thead>
-  <tbody>
-    <tr *ngFor="let item of dataSource">
-      <td style="width: 14%;"><input type="checkbox" value="">&nbsp;&nbsp;{{ item.id }}</td>
-      <td style="width: 15%;">{{ item.name }}</td>
-      <td class="text-left" style="width: 10%;">
-        <button type="button" class="refresh-btn"><img src="assets/refresh-ccw.png" />&nbsp;&nbsp;Retry</button>
+  <!-- <tbody *ngIf="loading">
+    <tr>
+      <td colspan="6" style="padding-left: 50%;">
+        <mat-progress-spinner
+          mode="indeterminate"
+          value="50"
+          diameter="20">
+        </mat-progress-spinner>
       </td>
-      <td style="width: 20%;">{{ item.createDate }}</td>
-      <td>{{ item.timeUpload }}</td>
+    </tr>
+  </tbody> -->
+  <tbody>
+    <tr *ngFor="let item of logList">
+      <td><input type="checkbox" value="" (change)="selectLog($event, item)">&nbsp;&nbsp;{{ item.ticket_num }}</td>
+      <td>{{ item.filename }}</td>
+      <td>{{ requestStatus[item.status] }}</td>
+      <!-- <td class="text-left">
+        <button type="button" class="refresh-btn"><img src="assets/refresh-ccw.png" />&nbsp;&nbsp;Retry</button>
+      </td> -->
+      <td>{{ item.create_time | date: 'd MMM y' }}</td>
+      <td>{{ item.time_updated | date: 'h:mm:ss a (zzzz)' }}</td>
     </tr>
   </tbody>
 </table>

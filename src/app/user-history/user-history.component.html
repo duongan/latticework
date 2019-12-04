@@ -1,4 +1,4 @@
-<table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="table-striped">
+<table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="table hover">
   <thead>
     <tr>
       <th>Last Service Date</th>
@@ -13,12 +13,12 @@
   </thead>
   <tbody>
     <tr *ngFor="let item of dataSource">
-      <td>{{ item.lastServiceDate }}</td>
-      <td>{{ item.name }}</td>
-      <td>{{ item.email }}</td>
-      <td>{{ item.language }}</td>
-      <td>{{ item.status }}</td>
-      <td>{{ item.registeredTime }}</td>
+      <td></td>
+      <td>{{ item.data.first_name }} {{item.data.last_name}}</td>
+      <td>{{ item.data.user_account }}</td>
+      <td>{{ getLanguageName(item.data.language) }}</td>
+      <td>{{ item.data.activation === 1 ? 'Active' : 'In Active' }}</td>
+      <td>{{ item.data.create_time | date: 'd MMM y @ h:mm:ss a (zzzz)' }}</td>
       <td style="width: 5%;">
         <button type="button"><img src="assets/tab.png" /></button>
       </td>

@@ -28,12 +28,10 @@
     <div class="navbar-text">
       <a class="nav-link text-reset d-flex flex-row" href="#" (click)="logout()">
         <img class="rounded-circle mr-2" src="assets/User.png" alt="Avatar" height="44">
-        <span class="d-inline-block text-white">
-          <p class="m-0">
-            Joey, Wang
-          </p>
+        <span *ngIf="currentUser" class="d-inline-block text-white">
+          <p class="m-0">{{currentUser.account}}</p>
           <p class="m-0 text-white-50">
-            TWN-1
+            Logout
           </p>
         </span>
       </a>
