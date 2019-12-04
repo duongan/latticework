@@ -1,5 +1,6 @@
-import { Component, OnInit, OnDestroy, Input, AfterViewInit, ViewChild, OnChanges } from '@angular/core';
+import { Component, OnInit, OnDestroy, Input, AfterViewInit, ViewChild, OnChanges, Inject, LOCALE_ID } from '@angular/core';
 import { Subject } from 'rxjs';
+import { formatDate } from '@angular/common';
 import { DataTableDirective } from 'angular-datatables';
 import { DownloadService } from '../services/download.service';
 import { AmberService } from '../services/amber.service';
@@ -37,7 +38,8 @@ export class LogComponent implements OnInit, OnChanges, AfterViewInit, OnDestroy
     private amberService: AmberService,
     private appService: AppService,
     private downloadService: DownloadService,
-    private dialog: MatDialog
+    private dialog: MatDialog,
+    @Inject(LOCALE_ID) private locale: string
   ) { }
 
   ngOnInit() {
@@ -62,13 +64,14 @@ export class LogComponent implements OnInit, OnChanges, AfterViewInit, OnDestroy
       return;
     }
     if (this.selectedLogs.length === 1) {
-      const { ticket_num, filename } = this.selectedLogs[0];
-      // '45cf5285-b173-4d6e-8804-9663468b1cb5'
-      this.downloadService.downloadLogs(ticket_num)
+      const { authorization_id, filename } = this.selectedLogs[0];
+      this.downloadService.downloadLog(authorization_id)
         .subscribe(
           response => {
+            const defaultFileName = `DebugLogfile-${formatDate(new Date(), 'yyyy-m-d h:mm:ss', this.locale)}`;
+            const finalFileName = filename || defaultFileName;
             const blob = new Blob([response], { type: 'text/plain' });
-            const file = new File([blob], `${filename}.log`, { type: 'text/plain' });
+            const file = new File([blob], `${finalFileName}.log`, { type: 'text/plain' });
             saveAs(file);
           },
           response => {
@@ -105,19 +108,19 @@ export class LogComponent implements OnInit, OnChanges, AfterViewInit, OnDestroy
 
   selectLog(event: any, data: any): void {
     if (event.target.checked) {
-      const existedItem = this.selectedLogs.find(item => item.ticket_num === data.ticket_num);
+      const existedItem = this.selectedLogs.find(item => item.authorization_id === data.authorization_id);
       if (!existedItem) {
         this.selectedLogs.push(data);
       }
     } else {
-      const tmp = this.selectedLogs.filter(item => item.ticket_num !== data.ticket_num);
+      const tmp = this.selectedLogs.filter(item => item.authorization_id !== data.authorization_id);
       this.selectedLogs = tmp;
     }
   }
 
   openDialog(data: any) {
     this.dialog.open(DialogComponent, {
-      width: '250px',
+      width: '350px',
       data
     });
   }

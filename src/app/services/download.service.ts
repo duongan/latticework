@@ -16,8 +16,8 @@ export class DownloadService {
     private urlService: UrlService
   ) { }
 
-  downloadLogs(authorization_id: string) {
-    const url = this.urlService.get('downloadLogs', { authorization_id });
+  downloadLog(authorization_id: string) {
+    const url = this.urlService.get('downloadLog', { authorization_id });
     return this.http.get(url, { responseType: 'blob' });
   }
 }

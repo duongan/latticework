@@ -14,7 +14,7 @@
       <th style="padding-left: 10px;">Ticket Number</th>
       <th>Log Name</th>
       <th>Status</th>
-      <th>&nbsp;</th>
+      <!-- <th>&nbsp;</th> -->
       <th>Create Date</th>
       <th>Time Upload</th>
     </tr>
@@ -35,9 +35,9 @@
       <td><input type="checkbox" value="" (change)="selectLog($event, item)">&nbsp;&nbsp;{{ item.ticket_num }}</td>
       <td>{{ item.filename }}</td>
       <td>{{ requestStatus[item.status] }}</td>
-      <td class="text-left">
+      <!-- <td class="text-left">
         <button type="button" class="refresh-btn"><img src="assets/refresh-ccw.png" />&nbsp;&nbsp;Retry</button>
-      </td>
+      </td> -->
       <td>{{ item.create_time | date: 'd MMM y' }}</td>
       <td>{{ item.time_updated | date: 'h:mm:ss a (zzzz)' }}</td>
     </tr>

@@ -4,6 +4,7 @@ import { Amber } from '../types/amber';
 import { AppService } from '../services/app.service';
 import { App } from '../types/app';
 import { UserService } from '../services/user.service';
+import { DEVICE_TYPE } from '../constants';
 
 @Component({
   selector: 'app-main-section',
@@ -14,6 +15,7 @@ export class MainSectionComponent implements OnInit {
   firstPanelOpenState = false;
   secondPanelOpenState = false;
   thirdPanelOpenState = false;
+  deviceType = Object.keys(DEVICE_TYPE);
   public amberInfo: Amber;
   public appInfo: App;
   public selectedUser: any;

@@ -1,5 +1,6 @@
-import { Component, Input, OnInit, OnChanges, Inject, LOCALE_ID, SimpleChange } from '@angular/core';
+import { Component, Input, OnInit, OnChanges, Inject, LOCALE_ID } from '@angular/core';
 import { formatDate } from '@angular/common';
+import { DEVICE_TYPE } from '../constants';
 
 @Component({
   selector: 'app-detail-page',
@@ -14,6 +15,8 @@ export class DetailPageComponent implements OnInit, OnChanges {
   @Input() activityList: any;
   @Input() appProfileInfo: any;
   @Input() appActivityList: any;
+  @Input() type: any;
+  profile: any;
 
   constructor(@Inject(LOCALE_ID) private locale: string) {
     this.leftDetails = [];
@@ -29,6 +32,7 @@ export class DetailPageComponent implements OnInit, OnChanges {
   }
 
   initData() {
+    this.profile = this.profileInfo || this.appProfileInfo;
     if (this.profileInfo) {
       this.leftDetails = [
           {

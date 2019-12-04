@@ -20,9 +20,9 @@
       <mat-icon *ngIf="secondPanelOpenState" class="text-header">remove</mat-icon>
     </mat-expansion-panel-header>
 
-    <app-detail-page [profileInfo]="amberInfo.profileInfo" [deviceInfo]="amberInfo.deviceInfo"
+    <app-detail-page [type]="deviceType[0]" [profileInfo]="amberInfo.profileInfo" [deviceInfo]="amberInfo.deviceInfo"
       [activityList]="amberInfo.activityEventList" *ngIf="amberInfo"></app-detail-page>
-    <app-detail-page [appProfileInfo]="appInfo.profileInfo" [appActivityList]="appInfo.activityEventList"
+    <app-detail-page [type]="deviceType[1]" [appProfileInfo]="appInfo.profileInfo" [appActivityList]="appInfo.activityEventList"
       *ngIf="appInfo"></app-detail-page>
 
       <div *ngIf="!isSelectedUser() || (!isAmberInfoAvailable() && !isAppInfoAvailable())" class="text-center">No data to display</div>
