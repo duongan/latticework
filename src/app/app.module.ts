@@ -52,7 +52,8 @@ import { DialogComponent } from './dialog/dialog.component';
     MatProgressSpinnerModule,
     DataTablesModule,
     MatDialogModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    OverlayModule
   ],
   providers: [],
   bootstrap: [AppComponent],
