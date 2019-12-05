@@ -47,7 +47,7 @@ export class AppService {
       return of(null);
     }
     return this.http
-      .get(this.urlService.get('amberLogList', { profileId }))
+      .get(this.urlService.get('appLogList', { profileId }))
       .pipe(map((res: any) => {
         if (res) {
           return res.data;
