@@ -4,7 +4,7 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class UrlService {
-  private host = 'http://10.49.8.222:8888';
+  host = 'http://10.49.8.222:8888';
   private urls = {
     login: `${this.host}/auth/login`,
     userSearch: `${this.host}/user/search/{identity}`,

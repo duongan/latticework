@@ -66,7 +66,7 @@ export class LogComponent implements OnInit, OnChanges, AfterViewInit, OnDestroy
     if (this.selectedLogs.length === 1) {
       const { authorization_id, filename, status } = this.selectedLogs[0];
       if (status !== 70) {
-        this.openDialog({ title: 'Warning', message: 'Cannot download this log because its status is not done yet' });
+        this.openDialog({ title: 'Warning', message: `Cannot download this log because its status is not "${this.requestStatus[70]}"` });
         return;
       }
       this.downloadService.downloadLog(authorization_id)
