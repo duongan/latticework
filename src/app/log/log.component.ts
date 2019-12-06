@@ -64,14 +64,18 @@ export class LogComponent implements OnInit, OnChanges, AfterViewInit, OnDestroy
       return;
     }
     if (this.selectedLogs.length === 1) {
-      const { authorization_id, filename } = this.selectedLogs[0];
+      const { authorization_id, filename, status } = this.selectedLogs[0];
+      if (status !== 70) {
+        this.openDialog({ title: 'Warning', message: 'Cannot download this log because its status is not done yet' });
+        return;
+      }
       this.downloadService.downloadLog(authorization_id)
         .subscribe(
           response => {
-            const defaultFileName = `DebugLogfile-${formatDate(new Date(), 'yyyy-m-d h:mm:ss', this.locale)}`;
+            const defaultFileName = `DebugLogfile-${formatDate(new Date(), 'yyyy-m-d h:mm:ss', this.locale)}.log`;
             const finalFileName = filename || defaultFileName;
             const blob = new Blob([response], { type: 'text/plain' });
-            const file = new File([blob], `${finalFileName}.log`, { type: 'text/plain' });
+            const file = new File([blob], `${finalFileName}`, { type: 'text/plain' });
             saveAs(file);
           },
           response => {

@@ -34,6 +34,7 @@ export class DetailPageComponent implements OnInit, OnChanges {
   initData() {
     this.profile = this.profileInfo || this.appProfileInfo;
     if (this.profileInfo) {
+      const route = this.getInfo('deviceInfo', 'route');
       this.leftDetails = [
           {
             label: 'Display name',
@@ -49,7 +50,7 @@ export class DetailPageComponent implements OnInit, OnChanges {
           },
           {
             label: 'Router board ID',
-            value: ''
+            value: route && route.r_sn ? route.r_sn : ''
           },
           {
             label: 'Router FW Version',
@@ -57,15 +58,15 @@ export class DetailPageComponent implements OnInit, OnChanges {
           },
           {
             label: 'Default Password',
-            value: ''
+            value: route && route.default_wifi_pwd ? route.default_wifi_pwd : ''
           },
           {
             label: 'WAN Mac',
-            value: ''
+            value: route && route.r_wan_mac ? route.r_wan_mac : ''
           },
           {
             label: '2.4G MAC',
-            value: ''
+            value: route && route.wifi_2g_mac ? route.wifi_2g_mac : ''
           }
       ];
 
@@ -96,26 +97,26 @@ export class DetailPageComponent implements OnInit, OnChanges {
           },
           {
             label: '5G Mac',
-            value: ''
+            value: route && route.wifi_5g_mac ? route.wifi_5g_mac : ''
           }
       ];
     } else if (this.appProfileInfo) {
-      this.leftDetails.push({
+      this.leftDetails = [{
         label: 'Display name',
         value: this.getInfo('appProfileInfo', 'device_display_name')
-      });
+      }];
 
-      this.rightDetails.push({
+      this.rightDetails = [{
         label: 'OS Version',
         value: this.getInfo('appProfileInfo', 'os_version')
-      });
+      }];
     }
   }
 
-  getInfo(type: string, field: string): string {
+  getInfo(type: string, field: string): any {
     if (this[type] && this[type][field]) {
       return this[type][field];
     }
-    return '';
+    return null;
   }
 }

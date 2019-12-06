@@ -25,7 +25,7 @@
           </table>
         </div>
 
-        <button type="button" class="btn btn-sm btn-dark round-corner mr-2">Remote Debug</button>
+        <button type="button" class="btn btn-sm btn-dark round-corner mr-2" [disabled]="true">Remote Debug</button>
 
         <app-request-log-button [type]="type" [profile]="profile"></app-request-log-button>
 
@@ -54,7 +54,7 @@
                 {{detail.value}}
               </span>
               <button type="button" class="btn btn-dark btn-sm round-corner ml-3"
-                *ngIf="detail.label === 'GUID'">Migrate</button>
+                *ngIf="detail.label === 'GUID'" [disabled]="true">Migrate</button>
             </td>
           </tr>
         </tbody>
