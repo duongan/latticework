@@ -40,7 +40,7 @@ export class UserService {
 
   searchUser(identity: string): Observable<any> {
     if (!identity.trim()) {
-      return of({});
+      return of([]);
     }
     return this.http
       .get<any>(this.urlService.get('userSearch', { identity }))
