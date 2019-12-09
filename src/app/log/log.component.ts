@@ -8,6 +8,7 @@ import { AppService } from '../services/app.service';
 import { DialogComponent } from '../dialog/dialog.component';
 import { MatDialog } from '@angular/material/dialog';
 import { saveAs } from 'file-saver';
+import { RequestLogService } from '../services/request-log.service';
 
 @Component({
   selector: 'app-log',
@@ -39,15 +40,37 @@ export class LogComponent implements OnInit, OnChanges, AfterViewInit, OnDestroy
     private appService: AppService,
     private downloadService: DownloadService,
     private dialog: MatDialog,
+    private requestLogService: RequestLogService,
     @Inject(LOCALE_ID) private locale: string
   ) { }
 
   ngOnInit() {
     this.dtOptions = {
-      columnDefs: [
-        { orderable: false, targets: 2 }
+      stateSave: true,
+      dom: 'lBfrtip',
+      buttons: [
+        {
+          extend: 'copyHtml5',
+          text: '<img style="width: 13px" src="assets/download.png" alt="download">',
+          action: () => this.download(),
+          titleAttr: 'Download',
+          className: 'download-log-btn'
+        },
+        {
+          extend: 'copyHtml5',
+          text: '<img style="width: 13px" src="assets/refresh.png" alt="refresh" >',
+          action: () => this.loadLogList(),
+          titleAttr: 'Refresh',
+          className: 'refresh-table-btn'
+        }
       ]
     };
+    this.requestLogService.notification.subscribe(res => {
+      if (res) {
+        this.loadLogList();
+        this.requestLogService.requestedStatus(false);
+      }
+    });
   }
 
   ngOnChanges() {

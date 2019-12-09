@@ -1,12 +1,6 @@
 import { Injectable } from '@angular/core';
-import { Observable, of, Subject, BehaviorSubject } from 'rxjs';
-import {
-  map,
-  debounceTime,
-  distinctUntilChanged,
-  switchMap,
-  tap
-} from 'rxjs/operators';
+import { Observable, of, BehaviorSubject } from 'rxjs';
+import { map, tap } from 'rxjs/operators';
 import { HttpService } from './http.service';
 import { UrlService } from './url.service';
 

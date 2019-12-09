@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, BehaviorSubject } from 'rxjs';
 import { UrlService } from '../services/url.service';
 import { DEVICE_TYPE } from '../constants';
 
@@ -15,10 +15,18 @@ const httpOptions = {
 })
 export class RequestLogService {
 
+  private justRequested$: BehaviorSubject<any>;
+
   constructor(
     private http: HttpClient,
     private urlService: UrlService
-  ) { }
+  ) {
+    this.justRequested$ = new BehaviorSubject(false);
+  }
+
+  get notification(): Observable<any> {
+    return this.justRequested$.asObservable();
+  }
 
   requestLog(type: any, params: any) {
     let url: string;
@@ -28,6 +36,10 @@ export class RequestLogService {
       url = this.urlService.get('requestAppLog');
     }
     return this.http.post(url, params, httpOptions);
+  }
+
+  requestedStatus(status: boolean) {
+    this.justRequested$.next(status);
   }
 
 }

@@ -57,6 +57,7 @@ export class RequestLogButtonComponent implements OnInit {
       response => {
         this.openDialog({ title: 'Notice', message: 'Request log successfully' });
         this.requesting = false;
+        this.requestLog.requestedStatus(true);
         popover.close();
       },
       response => {
