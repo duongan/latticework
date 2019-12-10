@@ -1,13 +1,12 @@
-import { Component, Input, OnInit, OnChanges, Inject, LOCALE_ID } from '@angular/core';
+import { Component, Input, OnChanges, Inject, LOCALE_ID } from '@angular/core';
 import { formatDate } from '@angular/common';
-import { DEVICE_TYPE } from '../constants';
 
 @Component({
   selector: 'app-detail-page',
   templateUrl: './detail-page.component.html',
   styleUrls: ['./detail-page.component.scss']
 })
-export class DetailPageComponent implements OnInit, OnChanges {
+export class DetailPageComponent implements OnChanges {
   public leftDetails: Array<any>;
   public rightDetails: Array<any>;
   @Input() profileInfo: any;
@@ -25,10 +24,6 @@ export class DetailPageComponent implements OnInit, OnChanges {
 
   ngOnChanges() {
     this.initData();
-  }
-
-  ngOnInit() {
-    
   }
 
   initData() {
