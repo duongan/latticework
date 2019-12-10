@@ -1,5 +1,5 @@
 import { Component, OnInit, OnDestroy, AfterViewInit, ViewChild } from '@angular/core';
-import { Subject, Observable } from 'rxjs';
+import { Subject } from 'rxjs';
 import { DataTableDirective } from 'angular-datatables';
 import { UserService } from '../services/user.service';
 import { UtilsService } from '../services/utils.service';
@@ -31,8 +31,9 @@ export class UserHistoryComponent implements OnInit, OnDestroy, AfterViewInit {
         { orderable: false, targets: 7 }
       ],
       rowCallback: (row: Node, data: any[] | Object, index: number) => {
-        $('td', row).unbind('click');
-        $('td', row).bind('click', () => {
+        $(row).unbind('click');
+        $(row).bind('click', (e) => {
+          e.preventDefault();
           $(row).parent().children().css('background-color', '#ffffff');
           $(row).css('background-color', '#cccccc');
           this.userService.getUserDetail(data[2]);
@@ -56,6 +57,12 @@ export class UserHistoryComponent implements OnInit, OnDestroy, AfterViewInit {
         this.selectedUser = user;
       }
     });
+
+    const email = localStorage.getItem('emailForOpeningNewTab');
+    if (email) {
+      this.userService.getUserDetail(email);
+      localStorage.removeItem('emailForOpeningNewTab');
+    }
   }
 
   ngAfterViewInit(): void {
@@ -80,5 +87,12 @@ export class UserHistoryComponent implements OnInit, OnDestroy, AfterViewInit {
 
   getLanguageName(code: string): void {
     return this.utils.getLanguageName(code);
+  }
+
+  openNewWindow(e: any, email: string) {
+    e.preventDefault();
+    e.stopPropagation();
+    localStorage.setItem('emailForOpeningNewTab', email);
+    window.open('/');
   }
 }

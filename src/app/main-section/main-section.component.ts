@@ -32,6 +32,11 @@ export class MainSectionComponent implements OnInit {
       this.amberInfo = null;
       this.appInfo = null;
     });
+    this.userService.userList.subscribe(users => {
+      if (users) {
+        this.firstPanelOpenState = true;
+      }
+    });
     this.amberService.amberInfo.subscribe((result: Amber) => {
       if (!result) {
         this.amberInfo = null;
