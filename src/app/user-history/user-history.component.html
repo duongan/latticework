@@ -20,10 +20,10 @@
       <td>{{ item.data.activation === 1 ? 'Active' : 'In Active' }}</td>
       <td>{{ item.data.create_time | date: 'd MMM y @ h:mm:ss a (zzzz)' }}</td>
       <td style="width: 5%;">
-        <button type="button"><img src="assets/tab.png" /></button>
+        <button type="button"><img src="assets/tab.png" alt="Open" /></button>
       </td>
       <td style="width: 5%;">
-        <button type="button"><img src="assets/group.png" /></button>
+        <button type="button" (click)="openNewWindow($event, item.data.user_account)"><img src="assets/group.png" /></button>
       </td>
     </tr>
   </tbody>

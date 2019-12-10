@@ -1,6 +1,6 @@
 <mat-accordion multi="true">
   <mat-expansion-panel class="no-box-shadow" style="border-top: none;" hideToggle (opened)="firstPanelOpenState = true"
-    (closed)="firstPanelOpenState = false">
+    (closed)="firstPanelOpenState = false" [expanded]="firstPanelOpenState">
     <mat-expansion-panel-header class="expansion-header">
       <mat-panel-title class="text-header">User History</mat-panel-title>
       <mat-icon *ngIf="!firstPanelOpenState" class="text-header">add</mat-icon>

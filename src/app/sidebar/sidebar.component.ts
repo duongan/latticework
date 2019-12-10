@@ -54,13 +54,14 @@ export class SidebarComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.userService.currentUser.subscribe(user => {
-      if (!user) {
-        return;
-      }
-
-      this.sidebarList[0].data = user.nas_list;
-      this.sidebarList[1].data = user.app_list;
+    setTimeout(() => {
+      this.userService.currentUser.subscribe(user => {
+        if (!user) {
+          return;
+        }
+        this.sidebarList[0].data = user.nas_list;
+        this.sidebarList[1].data = user.app_list;
+      });
     });
   }
 
