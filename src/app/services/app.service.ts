@@ -27,19 +27,12 @@ export class AppService {
       .pipe(map((res: any) => res.data));
   }
 
-  getActivityEventList(profileId: string): Observable<any> {
+  getActivityEventList(profileId: string, offset: number = 0, limit: number = 10): Observable<any> {
     if (!profileId) {
       return of(null);
     }
 
-    return this.http
-      .get(this.urlService.get('appActivityInfo', { profileId }))
-      .pipe(map((res: any) => {
-        if (res && res.data) {
-          return res.data;
-        }
-        return [];
-      }));
+    return this.http.get(this.urlService.get('appActivityInfo', { profileId, offset, limit }));
   }
 
   getLogList(profileId: string): Observable<any> {
@@ -62,12 +55,10 @@ export class AppService {
     }
 
     zip(
-      this.getProfileInfo(profileId),
-      this.getActivityEventList(profileId)
-    ).subscribe(([profileInfo, activityEventList]) => {
+      this.getProfileInfo(profileId)
+    ).subscribe(([profileInfo]) => {
       this.appInfo$.next({
-        profileInfo,
-        activityEventList
+        profileInfo
       });
     });
   }

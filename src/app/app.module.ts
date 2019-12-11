@@ -10,6 +10,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatDialogModule } from '@angular/material/dialog';
 import { OverlayModule } from '@angular/cdk/overlay';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 import { JwtInterceptor } from './helpers/jwt.intercepter';
 import { AppRoutingModule } from './app-routing.module';
@@ -25,6 +26,7 @@ import { RequestLogButtonComponent } from './request-log-button/request-log-butt
 import { LogComponent } from './log/log.component';
 import { DetailPageComponent } from './detail-page/detail-page.component';
 import { DialogComponent } from './dialog/dialog.component';
+import { ActivityEventsComponent } from './activity-events/activity-events.component';
 
 @NgModule({
   declarations: [
@@ -39,7 +41,8 @@ import { DialogComponent } from './dialog/dialog.component';
     LogComponent,
     RequestLogButtonComponent,
     DetailPageComponent,
-    DialogComponent
+    DialogComponent,
+    ActivityEventsComponent
   ],
   imports: [
     BrowserModule,
@@ -54,7 +57,8 @@ import { DialogComponent } from './dialog/dialog.component';
     DataTablesModule,
     MatDialogModule,
     BrowserAnimationsModule,
-    OverlayModule
+    OverlayModule,
+    NgxPaginationModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true }
