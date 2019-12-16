@@ -54,7 +54,8 @@ export class LogComponent implements OnInit, OnChanges, AfterViewInit, OnDestroy
           text: '<img style="width: 13px" src="assets/download.png" alt="download">',
           action: () => this.download(),
           titleAttr: 'Download',
-          className: 'download-log-btn'
+          className: 'download-log-btn',
+          enabled: false
         },
         {
           extend: 'copyHtml5',
@@ -144,6 +145,13 @@ export class LogComponent implements OnInit, OnChanges, AfterViewInit, OnDestroy
     } else {
       const tmp = this.selectedLogs.filter(item => item.authorization_id !== data.authorization_id);
       this.selectedLogs = tmp;
+    }
+    const table = $('#table_log_list').DataTable();
+    const downloadButton = table['button'](0);
+    if (this.selectedLogs.length === 1 && this.selectedLogs[0].status === 70) {
+      downloadButton.enable();
+    } else {
+      downloadButton.disable();
     }
   }
 
